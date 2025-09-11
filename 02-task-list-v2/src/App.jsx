@@ -1,8 +1,8 @@
+import { useTask } from './hooks/useTask'
 import { Footer } from './components/footer'
 import { TaskForm } from './components/taskForm'
 import { TaskList } from './components/taskList'
 import { CompletedTaskList } from './components/taskCompleted'
-import { useTask } from './hooks/useTask'
 
 export const App = () => {
   const { toggleSortOrder, toggleSection, openSection, sortType, sortOrder } = useTask()
