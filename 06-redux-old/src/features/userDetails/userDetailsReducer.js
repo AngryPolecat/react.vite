@@ -5,7 +5,7 @@ export const userDetailsReducer = (state = initialState, { type, payload }) => {
     case 'userDetails/selectedUser':
       return { ...state, user: payload }
     case 'userDetails/clearUser':
-      return initialState
+      return { ...state, user: {} }
     default:
       return state
   }
