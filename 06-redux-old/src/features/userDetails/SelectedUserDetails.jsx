@@ -1,17 +1,24 @@
+import { useDispatch, useSelector } from 'react-redux'
+
 export const SelectedUserDetails = () => {
+  const user = useSelector((state) => state.userDetailsReducer.user)
+  const dispatch = useDispatch()
+
   return (
     <div className="selected-user-details">
       <h2>Selected User</h2>
       <p>
         <strong>Name: </strong>
-        Name
+        {user.name}
       </p>
       <p>
         <strong>Email: </strong>
-        Email
+        {user.email}
       </p>
 
-      <button className="clear-btn">Clear Selection</button>
+      <button className="clear-btn" onClick={() => dispatch({ type: 'userDetails/clearUser' })}>
+        Clear Selection
+      </button>
     </div>
   )
 }
