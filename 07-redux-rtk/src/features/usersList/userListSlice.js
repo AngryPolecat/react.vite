@@ -8,9 +8,16 @@ const initialState = {
   error: null,
 }
 
-export const fetchUsers = createAsyncThunk('userList/fethUsers', async () => {
-  const result = await fetch(URL)
-  return result.json()
+export const fetchUsers = createAsyncThunk('userList/fethUsers', async (_, { rejectWithValue }) => {
+  try {
+    const result = await fetch(URL)
+    if (!result.ok) {
+      return rejectWithValue({ status: result.status, error: 'Failed to fetch users' })
+    }
+    return result.json()
+  } catch (error) {
+    return rejectWithValue({ status: 500, error: 'Failed to fetch users' })
+  }
 })
 
 const userListSlice = createSlice({
@@ -23,6 +30,9 @@ const userListSlice = createSlice({
     deleteUser(state, action) {
       const deleteUser = state.users.findIndex((user) => user.id === action.payload)
       state.users.splice(deleteUser, 1)
+    },
+    showLog(state, action) {
+      console.log(state, action.payload)
     },
   },
   extraReducers: (builder) => {
@@ -37,8 +47,10 @@ const userListSlice = createSlice({
       state.users = action.payload
     })
     builder.addCase(fetchUsers.rejected, (state, action) => {
+      console.log(action.payload)
+
       state.loading = false
-      state.error = action.payload
+      state.error = `${action.payload.status} ${action.payload.error}`
       state.users = []
     })
   },

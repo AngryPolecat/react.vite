@@ -24,7 +24,7 @@ export const UserList = () => {
       </button>
 
       {loading && <p>Loading users...</p>}
-      {error && <p>Error load users...</p>}
+      {error && <p>{error}</p>}
 
       <ul>
         {users.map((user) => (

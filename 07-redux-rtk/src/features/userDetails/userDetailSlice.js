@@ -10,7 +10,7 @@ const userDetailsSlice = createSlice({
       state.user = action.payload
     },
     clearUser(state, action) {
-      state.user = initialState
+      state.user = {}
     },
   },
 })
