@@ -1,0 +1,230 @@
+:root {
+  --font-family: 'Inter', 'Roboto', sans-serif;
+  --color-bg: #f7f8fa;
+  --color-text: #333;
+
+  --color-green: #4caf50;
+  --color-green-dark: #388e3c;
+
+  --color-blue: #2196f3;
+  --color-blue-dark: #1976d2;
+
+  --color-red: #e53935;
+  --color-red-dark: #c62828;
+
+  --color-orange: #ff9800;
+  --color-orange-dark: #ef6c00;
+
+  --radius: 4px;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+html,
+body {
+  margin: 0;
+  padding: 0;
+  font-family: var(--font-family);
+  background-color: var(--color-bg);
+  color: var(--color-text);
+}
+
+body {
+  line-height: 1.4;
+}
+
+.app-container {
+  max-width: 800px;
+  margin: 0 auto;
+  padding: 1rem;
+}
+
+.app-container > h1 {
+  text-align: center;
+  margin-bottom: 1rem;
+  font-weight: 600;
+}
+
+/* -------------------------------
+   Стили для блока selected-user-details
+---------------------------------*/
+.selected-user-details {
+  background-color: #fff;
+  border-radius: var(--radius);
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+  padding: 1rem;
+  margin-bottom: 1rem; /* чтобы отодвинуть от формы */
+}
+
+.selected-user-details h2 {
+  margin-top: 0;
+  font-size: 1.1rem;
+  margin-bottom: 0.5rem;
+}
+
+.selected-user-details p {
+  margin: 0.25rem 0;
+  font-size: 0.95rem;
+}
+
+.selected-user-details .clear-btn {
+  margin-top: 0.75rem;
+  font-size: 0.8rem;
+  padding: 0.3rem 0.6rem;
+  background-color: var(--color-orange);
+  color: #fff;
+  border: none;
+  border-radius: var(--radius);
+  cursor: pointer;
+  transition: background-color 0.2s;
+}
+.selected-user-details .clear-btn:hover {
+  background-color: var(--color-orange-dark);
+}
+
+/* -------------------------------
+   Форма добавления пользователя
+---------------------------------*/
+.add-user-form {
+  display: flex;
+  gap: 0.5rem;
+  margin-bottom: 1rem;
+}
+
+.add-user-form input[type='text'],
+.add-user-form input[type='email'] {
+  flex: 1;
+  padding: 0.4rem;
+  font-size: 0.9rem;
+  border: 1px solid #ccc;
+  border-radius: var(--radius);
+  outline: none;
+  transition: border-color 0.2s;
+}
+
+.add-user-form input:focus {
+  border-color: var(--color-blue);
+}
+
+.add-user-form button {
+  font-size: 0.8rem;
+  padding: 0.4rem 0.7rem;
+  background-color: var(--color-green);
+  color: #fff;
+  border: none;
+  border-radius: var(--radius);
+  cursor: pointer;
+  transition: background-color 0.2s;
+}
+
+.add-user-form button:hover {
+  background-color: var(--color-green-dark);
+}
+
+/* -------------------------------
+   Список пользователей
+---------------------------------*/
+.user-list {
+  background-color: #fff;
+  padding: 1rem;
+  border-radius: var(--radius);
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+}
+
+.user-list h2 {
+  margin-top: 0;
+  margin-bottom: 0.5rem;
+  font-size: 1.1rem;
+}
+
+.user-list p {
+  margin: 0.3rem 0;
+}
+
+/* Кнопка Load Users */
+.user-list .load-btn {
+  font-size: 0.8rem;
+  padding: 0.4rem 0.7rem;
+  background-color: var(--color-green);
+  color: #fff;
+  border: none;
+  border-radius: var(--radius);
+  cursor: pointer;
+  margin-bottom: 0.5rem;
+  transition: background-color 0.2s;
+}
+
+.user-list .load-btn:hover {
+  background-color: var(--color-green-dark);
+}
+
+/* Список самих пользователей */
+.user-list ul {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+.user-list li {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 0.5rem;
+  padding: 0.25rem 0;
+  border-bottom: 1px solid #eee;
+  font-size: 0.9rem; /* поменьше текст */
+}
+
+.user-list li:last-child {
+  border-bottom: none;
+}
+
+.user-list li span {
+  flex: 1; /* чтобы текст занимал оставшееся пространство */
+  white-space: nowrap; /* при желании убрать перенос */
+  overflow: hidden; /* если хотите обрезать длинные имена */
+  text-overflow: ellipsis;
+}
+
+/* Группа кнопок справа */
+.btn-group {
+  display: flex;
+  align-items: center;
+  gap: 0.3rem;
+}
+
+.select-btn {
+  font-size: 0.7rem;
+  padding: 0.3rem 0.5rem;
+  background-color: var(--color-blue);
+  color: #fff;
+  border: none;
+  border-radius: var(--radius);
+  cursor: pointer;
+  transition: background-color 0.2s;
+}
+.select-btn:hover {
+  background-color: var(--color-blue-dark);
+}
+
+.delete-btn {
+  font-size: 0.7rem;
+  padding: 0.3rem 0.5rem;
+  background-color: var(--color-red);
+  color: #fff;
+  border: none;
+  border-radius: var(--radius);
+  cursor: pointer;
+  transition: background-color 0.2s;
+}
+.delete-btn:hover {
+  background-color: var(--color-red-dark);
+}
+
+/* Пример сообщения об ошибке */
+.error-message {
+  color: var(--color-red);
+  font-weight: 600;
+}
