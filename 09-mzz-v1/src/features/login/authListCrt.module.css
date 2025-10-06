@@ -1,0 +1,21 @@
+.listCrt {
+  width: 100%;
+  padding: 0px;
+  margin: 10px 0 0 0;
+  min-height: 60px;
+  max-height: 300px;
+  overflow: auto;
+}
+
+.crt {
+  cursor: pointer;
+  border-bottom: 1px solid #474a51;
+  margin-top: 5px;
+  margin-bottom: 5px;
+}
+
+.crt span {
+  font-size: 12px;
+  color: #474a51;
+  display: inline-block;
+}

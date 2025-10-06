@@ -1,16 +1,22 @@
 import { useEffect, useState } from 'react'
 import './App.css'
 
+const DATA = { name: 'John', surname: 'Smith' }
 const URL = 'http://srv01.kemoms.ru/php/test.php'
-const METHOD = { method: 'POST' }
+const METHOD = {
+  method: 'POST',
+  headers: {
+    'Content-Type': 'application/json;charset=utf-8',
+  },
+  body: JSON.stringify(DATA),
+}
 
 const loaderData = async () => {
   const res = await fetch(URL, METHOD)
   if (!res.ok) {
     throw new Error('Failed to fetch data')
   }
-  const data = await res.json()
-  return data
+  return await res.json()
 }
 
 export const App = () => {
