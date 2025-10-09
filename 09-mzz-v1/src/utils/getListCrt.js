@@ -69,43 +69,48 @@ CertificateAdjuster.prototype.GetCertFio = function (certSubjectName) {
 //   return `${fio}<br />${dt}<br />${issuer}<br />`
 // }
 
-const checkPrivateKey = (certificate, data, url) => {
+export const checkPrivateKey = (certificate, setError, setData, setAuth) => {
   cadesplugin.async_spawn(
     function* (args) {
-      const hasPrivateKey = yield args[0].HasPrivateKey()
+      const { data, thumb, subject, fromDate, toDate, issuerName } = args[0]
+      const hasPrivateKey = yield data.HasPrivateKey()
       if (hasPrivateKey) {
-        const oPrivateKey = yield args[0].PrivateKey
+        const oPrivateKey = yield data.PrivateKey
         const sProviderName = yield oPrivateKey.ProviderName
         try {
           const sPrivateKeyLink = yield oPrivateKey.UniqueContainerName
-          const validator = yield args[0].IsValid()
+          const validator = yield data.IsValid()
           const certIsValid = yield validator.Result
           if (sPrivateKeyLink && certIsValid) {
-            fetch(args[2], { method: 'POST', body: JSON.stringify(args[1]) })
-              .then(async (response) => {
-                const result = await response.json()
-                //console.log(result)
-
-                if (!result.user || result.error) {
-                  showError('Ошибка: ' + result.msg, 'F')
-                } else {
-                  window.location.href = '../php/main.php?t=' + new Date()
-                }
-              })
-              .catch((err) => {
-                showError('Ошибка: ' + err, 'F')
-              })
+            setData({ thumb, subject, fromDate, toDate, issuer: issuerName })
+            setAuth('crt')
+            // fetch(args[2], { method: 'POST', body: JSON.stringify(args[1]) })
+            //   .then(async (response) => {
+            //     const result = await response.json()
+            //     //console.log(result)
+            //     if (!result.user || result.error) {
+            //       showError('Ошибка: ' + result.msg, 'F')
+            //     } else {
+            //       window.location.href = '../php/main.php?t=' + new Date()
+            //     }
+            //   })
+            //   .catch((err) => {
+            //     showError('Ошибка: ' + err, 'F')
+            //   })
+          } else {
+            setError('Ошибка: закрытый ключ не прошел проверку')
           }
         } catch (e) {
-          showError('Ошибка: ' + cadesplugin.getLastError(e), 'F')
+          setError('Ошибка: ' + cadesplugin.getLastError(e))
         }
       } else {
-        showError('Ошибка: закрытый ключ не найден', 'F')
+        setError('Ошибка: закрытый ключ не найден')
       }
     },
     certificate,
-    data,
-    url
+    setError,
+    setData,
+    setAuth
   )
 }
 
@@ -142,7 +147,18 @@ export const createListCrt = ({ setList, setError }) => {
             if (isValid) {
               const MAX_CRT = 1
               for (let j = 1; j <= MAX_CRT; j++) {
-                listValidCrt.push({ id: uuidv4(), thumb: thumbprint, fio, valid, issuer, subject: subjectName, issuerName: issuerName, fromDate: validFromDate, toDate: validToDate })
+                listValidCrt.push({
+                  id: uuidv4(),
+                  thumb: thumbprint,
+                  fio,
+                  valid,
+                  issuer,
+                  subject: subjectName,
+                  issuerName: issuerName,
+                  fromDate: validFromDate,
+                  toDate: validToDate,
+                  data: cert,
+                })
               }
             }
           }
