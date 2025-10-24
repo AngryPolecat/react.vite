@@ -1,0 +1,40 @@
+.container {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: nowrap;
+}
+
+.container div {
+  text-align: center;
+  padding: 10px;
+}
+
+.choiceModel,
+.menuModel {
+  width: 50px;
+}
+
+.dateModel {
+  width: 150px;
+}
+
+.numModel {
+  width: 150px;
+}
+
+.editModel {
+  width: 150px;
+}
+
+.releaseModel {
+  width: 150px;
+}
+
+.descriptionModel {
+  width: 500px;
+  text-align: left;
+}
+
+.menuModel {
+  position: relative;
+}

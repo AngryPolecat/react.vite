@@ -1,0 +1,70 @@
+.container {
+  color: red;
+}
+
+.header {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: nowrap;
+  margin-bottom: 20px;
+  border: 0px solid black;
+  justify-content: space-between;
+  /* justify-content: start; */
+}
+
+.header span {
+  margin-right: 20px;
+  font-size: 20px;
+  color: slategray;
+  font-weight: bold;
+}
+
+.menuModels {
+  position: relative;
+}
+
+li {
+  list-style: none;
+}
+
+li:nth-child(2n) {
+  background-color: #b0e0e6;
+}
+
+.headerListModel {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: nowrap;
+  background-color: #4682b4;
+}
+
+.headerListModel div {
+  padding: 10px;
+  color: #d3d3d3;
+  text-align: center;
+}
+
+.headerChoiceModel,
+.headerMenuModel {
+  width: 50px;
+}
+
+.headerDateModel {
+  width: 150px;
+}
+
+.headerNumModel {
+  width: 150px;
+}
+
+.headerEditModel {
+  width: 150px;
+}
+
+.headerReleaseModel {
+  width: 150px;
+}
+
+.headerDescriptionModel {
+  width: 500px;
+}

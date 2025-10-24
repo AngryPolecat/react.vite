@@ -11,6 +11,7 @@ export const UserPanel = () => {
 
   const handlerExit = () => {
     dispatch(clearCurrentUser())
+    localStorage.removeItem('token')
     navigate('/login')
   }
 

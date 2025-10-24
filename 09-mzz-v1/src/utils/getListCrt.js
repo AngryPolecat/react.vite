@@ -84,19 +84,6 @@ export const checkPrivateKey = (certificate, setError, setData, setAuth) => {
           if (sPrivateKeyLink && certIsValid) {
             setData({ thumb, subject, fromDate, toDate, issuer: issuerName })
             setAuth('crt')
-            // fetch(args[2], { method: 'POST', body: JSON.stringify(args[1]) })
-            //   .then(async (response) => {
-            //     const result = await response.json()
-            //     //console.log(result)
-            //     if (!result.user || result.error) {
-            //       showError('Ошибка: ' + result.msg, 'F')
-            //     } else {
-            //       window.location.href = '../php/main.php?t=' + new Date()
-            //     }
-            //   })
-            //   .catch((err) => {
-            //     showError('Ошибка: ' + err, 'F')
-            //   })
           } else {
             setError('Ошибка: закрытый ключ не прошел проверку')
           }
@@ -174,86 +161,3 @@ export const createListCrt = ({ setList, setError }) => {
     }
   })
 }
-// const createListCrt = () => {
-//   cadesplugin.async_spawn(function* () {
-//     try {
-//       const oStore = yield cadesplugin.CreateObjectAsync('CAdESCOM.Store')
-//       let storeExists = true
-
-//       if (oStore) {
-//         yield oStore.Open(CAPICOM_CURRENT_USER_STORE, CAPICOM_MY_STORE, CAPICOM_STORE_OPEN_MAXIMUM_ALLOWED)
-//       } else {
-//         storeExists = false
-//         showError('Ошибка при открытии хранилища сертификатов', 'F')
-//       }
-
-//       if (storeExists) {
-//         try {
-//           const certs = yield oStore.Certificates
-//           const countCerts = yield certs.Count
-//           for (let i = 1; i <= countCerts; i++) {
-//             try {
-//               const cert = yield certs.Item(i)
-
-//               try {
-//                 const thumbprint = yield cert.Thumbprint
-//                 try {
-//                   const validFromDate = new Date(yield cert.ValidFromDate)
-//                   const validToDate = new Date(yield cert.ValidToDate)
-//                   const isValid = validToDate > Date.now()
-//                   const subjectName = yield cert.SubjectName
-//                   const issuerName = yield cert.IssuerName
-
-//                   const subjectInfo = new CertificateAdjuster().GetCertInfoString(subjectName, validFromDate, validToDate, issuerName)
-//                   if (isValid) {
-//                     const MAX_CRT = 1
-//                     for (let j = 1; j <= MAX_CRT; j++) {
-//                       const container = document.querySelector('.container-certificate')
-//                       const containerCrt = document.createElement('div')
-//                       containerCrt.className = 'crt'
-//                       containerCrt.innerHTML = `${subjectInfo} Hash: ${thumbprint}`
-//                       containerCrt.dataset.thumb = thumbprint
-//                       containerCrt.dataset.subject = subjectName
-//                       containerCrt.dataset.issuer = issuerName
-//                       containerCrt.dataset.fromDate = validFromDate
-//                       containerCrt.dataset.toDate = validToDate
-//                       container.appendChild(containerCrt)
-
-//                       containerCrt.addEventListener('click', ({ target }) => {
-//                         const url = './php/authCrt.php'
-//                         const data = {
-//                           thumb: target.dataset.thumb,
-//                           subject: target.dataset.subject,
-//                           issuer: target.dataset.issuer,
-//                           fromDate: target.dataset.fromDate,
-//                           toDate: target.dataset.toDate,
-//                         }
-//                         //console.log(data)
-
-//                         checkPrivateKey(cert, data, url)
-//                       })
-//                     }
-//                   }
-//                 } catch (ex) {
-//                   showError('Ошибка: ' + cadesplugin.getLastError(ex), 'F')
-//                 }
-//               } catch (ex) {
-//                 showError('Ошибка: ' + cadesplugin.getLastError(ex), 'F')
-//               }
-//             } catch (ex) {
-//               showError('Ошибка: ' + cadesplugin.getLastError(ex), 'F')
-//               return
-//             }
-//           }
-//         } catch (ex) {
-//           showError('Ошибка: ' + cadesplugin.getLastError(ex), 'F')
-//           return
-//         }
-//         yield oStore.Close()
-//       }
-//     } catch (ex) {
-//       console.log(2)
-//       showError('Ошибка при открытии хранилища сертификатов', 'F')
-//     }
-//   })
-// }

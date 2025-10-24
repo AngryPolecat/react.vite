@@ -1,0 +1,37 @@
+.error,
+.success,
+.info {
+  position: fixed;
+  right: 5px;
+  width: 230px;
+  transform: translateX(100%);
+  animation: ani 1s forwards;
+  top: 110px;
+  min-height: 100px;
+  padding: 10px;
+  font-size: 14px;
+  border-radius: 5px;
+  font-weight: bold;
+  color: white;
+}
+
+.error {
+  background-color: #cb4154;
+}
+
+.success {
+  background-color: #007f66;
+}
+
+.info {
+  background-color: #4682b4;
+}
+
+@keyframes ani {
+  0% {
+    transform: translateX(100%);
+  }
+  100% {
+    transform: translateX(0);
+  }
+}

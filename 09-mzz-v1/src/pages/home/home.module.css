@@ -1,0 +1,13 @@
+.container {
+  position: fixed;
+  left: 0;
+  top: 100px;
+  bottom: 30px;
+  right: 0;
+  display: flex;
+  flex-direction: row;
+}
+
+.content {
+  padding: 20px;
+}

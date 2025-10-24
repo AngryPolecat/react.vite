@@ -6,7 +6,7 @@ import { Button } from '../../UI/buttons/button'
 import { useEffect, useState } from 'react'
 import { AuthListCrt } from './authListCrt'
 import { createListCrt } from '../../utils/getListCrt'
-import { URL_AUTH, MIN_LENGTH_LOGIN, MIN_LENGTH_PASS } from '../../const/const'
+import { URL, MIN_LENGTH_LOGIN, MIN_LENGTH_PASS } from '../../const/const'
 import { loaderData } from '../../utils/loaderData'
 import { clearCurrentUser, setCurrentUser } from './currentUserSlice'
 
@@ -28,14 +28,15 @@ export const Auth = () => {
         authType === 'psw'
           ? { type: 'psw', login, password }
           : { type: 'crt', thumb: dataCrt.thumb, subject: dataCrt.subject, fromDate: dataCrt.fromDate, toDate: dataCrt.toDate, issuer: dataCrt.issuer }
-      loaderData(URL_AUTH, data)
+      loaderData(URL.URL_AUTH, data)
         .then((data) => {
           if (data.error) {
             setErrorMessage(data.msg)
             return
           }
-          dispatch(setCurrentUser({ token: data.token, fio: data.user }))
+          dispatch(setCurrentUser({ token: data.token, fio: data.user, session: data.session }))
           navigate('/')
+          localStorage.setItem('token', data.token)
         })
         .catch((error) => setErrorMessage(error.message))
         .finally(() => {

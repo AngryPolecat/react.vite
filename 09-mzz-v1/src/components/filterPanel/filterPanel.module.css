@@ -1,0 +1,19 @@
+.container {
+  height: 100vh;
+  background-color: slategray;
+}
+
+.hidden {
+  width: 75px;
+}
+
+.visible {
+  width: 300px;
+}
+
+.icons {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: nowrap;
+  justify-content: flex-end;
+}

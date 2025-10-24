@@ -2,3 +2,47 @@
   color: #007988;
   cursor: pointer;
 }
+
+.button-panel-filter i {
+  color: white;
+  padding: 0 10px;
+}
+
+.button-panel-filter i:hover {
+  color: #add8e6;
+  cursor: pointer;
+}
+
+.icon-table-models-yes,
+.icon-table-models-no,
+.icon-table-models-choice-yes,
+.icon-table-models-choice-no,
+.icon-table-models-menu,
+.icon-header-models-menu {
+  border: 0px solid black;
+  margin-top: -10px;
+  cursor: auto;
+}
+
+.icon-table-models-choice-yes i,
+.icon-table-models-choice-no i,
+.icon-table-models-menu i,
+.icon-header-models-menu i {
+  cursor: pointer;
+  color: slategray;
+}
+
+.icon-table-models-yes i {
+  color: #007f66;
+}
+
+.icon-table-models-no i {
+  color: #cb4154;
+}
+
+.icon-table-models-menu {
+}
+
+.icon-header-models-menu {
+  margin: 5px 15px 0 0;
+}

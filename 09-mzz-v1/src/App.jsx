@@ -1,6 +1,4 @@
-import { createBrowserRouter, RouterProvider, useNavigate } from 'react-router-dom'
-import { useLayoutEffect } from 'react'
-import { useSelector } from 'react-redux'
+import { createBrowserRouter, RouterProvider } from 'react-router-dom'
 import './App.css'
 import { Layout } from './components/layout/layout'
 import { HomePage } from './pages/home/home'
@@ -20,7 +18,5 @@ const router = createBrowserRouter([
 ])
 
 export const App = () => {
-  const currentToken = useSelector((state) => state.currentUser.token)
-
   return <RouterProvider router={router} />
 }
