@@ -27,7 +27,8 @@
 .icon-table-models-choice-yes i,
 .icon-table-models-choice-no i,
 .icon-table-models-menu i,
-.icon-header-models-menu i {
+.icon-header-models-menu i,
+.icon-save-new-model i {
   cursor: pointer;
   color: slategray;
 }
@@ -45,4 +46,15 @@
 
 .icon-header-models-menu {
   margin: 5px 15px 0 0;
+}
+
+.icon-close i {
+  cursor: pointer;
+  margin: 15px;
+  color: #d3d3d3;
+}
+
+.icon-save-new-model {
+  display: flex;
+  justify-content: end;
 }

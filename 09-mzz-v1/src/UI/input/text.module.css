@@ -1,0 +1,14 @@
+.textArea {
+  width: 96%;
+}
+
+.standart {
+  resize: none;
+  font-size: 16px;
+  outline: none;
+  border: 0px solid #007988;
+  padding: 5px;
+  width: 100%;
+  margin: 5px 10px;
+  background-color: #f4f0ec;
+}

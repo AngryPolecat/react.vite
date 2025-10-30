@@ -7,6 +7,7 @@
 .container div {
   text-align: center;
   padding: 10px;
+  border: 0px solid black;
 }
 
 .choiceModel,
@@ -15,11 +16,11 @@
 }
 
 .dateModel {
-  width: 150px;
+  width: 350px;
 }
 
 .numModel {
-  width: 150px;
+  width: 250px;
 }
 
 .editModel {
@@ -27,12 +28,13 @@
 }
 
 .releaseModel {
-  width: 150px;
+  width: 250px;
 }
 
 .descriptionModel {
-  width: 500px;
+  /* width: 500px; */
   text-align: left;
+  width: 100%;
 }
 
 .menuModel {

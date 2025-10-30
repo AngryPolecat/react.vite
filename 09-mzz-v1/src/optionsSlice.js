@@ -1,6 +1,6 @@
 import { createSlice } from '@reduxjs/toolkit'
 
-const initialState = { loader: false, message: { text: '', type: null } }
+const initialState = { loader: false, message: { text: '', type: null }, extraPanel: false }
 
 const optionsSlice = createSlice({
   name: 'options',
@@ -17,9 +17,12 @@ const optionsSlice = createSlice({
       state.message.text = ''
       state.message.type = null
     },
+    toggleExtraPanel(state, action) {
+      state.extraPanel = action.payload
+    },
   },
 })
 
 export default optionsSlice.reducer
 
-export const { toggleLoader, showMessage, closeMessage } = optionsSlice.actions
+export const { toggleLoader, showMessage, closeMessage, toggleExtraPanel } = optionsSlice.actions

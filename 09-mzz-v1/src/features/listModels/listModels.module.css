@@ -1,5 +1,13 @@
 .container {
-  color: red;
+  display: flex;
+  flex-direction: row;
+  flex-wrap: nowrap;
+  justify-content: space-between;
+  border: 0px solid black;
+}
+
+.list {
+  width: 100%;
 }
 
 .header {
@@ -42,6 +50,7 @@ li:nth-child(2n) {
   padding: 10px;
   color: #d3d3d3;
   text-align: center;
+  border: 0px solid black;
 }
 
 .headerChoiceModel,
@@ -49,12 +58,20 @@ li:nth-child(2n) {
   width: 50px;
 }
 
+.headerChoiceModelCorrect {
+  width: 30px;
+}
+
+.headerMenuModelCorrect {
+  width: 32px;
+}
+
 .headerDateModel {
-  width: 150px;
+  width: 350px;
 }
 
 .headerNumModel {
-  width: 150px;
+  width: 250px;
 }
 
 .headerEditModel {
@@ -62,9 +79,10 @@ li:nth-child(2n) {
 }
 
 .headerReleaseModel {
-  width: 150px;
+  width: 250px;
 }
 
 .headerDescriptionModel {
-  width: 500px;
+  /* width: 500px; */
+  width: 100%;
 }

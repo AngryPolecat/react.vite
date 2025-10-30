@@ -1,0 +1,45 @@
+.container {
+  display: flex;
+  flex-direction: column;
+  height: 100vh;
+  background-color: white;
+  width: 500px;
+  border-left: 1px solid slategray;
+  margin-left: 10px;
+  padding-left: 10px;
+  transform: translateX(100%);
+  animation: ani 1s forwards;
+}
+
+.active {
+  display: block;
+}
+
+.hidden {
+  display: none;
+}
+
+.header {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  border: 0px solid slategray;
+  margin-bottom: 20px;
+  background-color: slategray;
+}
+
+.nameTab {
+  line-height: 50px;
+  font-weight: bold;
+  padding-left: 10px;
+  color: #d3d3d3;
+}
+
+@keyframes ani {
+  0% {
+    transform: translateX(100%);
+  }
+  100% {
+    transform: translateX(0);
+  }
+}

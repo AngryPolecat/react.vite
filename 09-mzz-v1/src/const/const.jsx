@@ -26,3 +26,17 @@ export const URL = {
   URL_GET_LIST_MODELS,
   URL_ADD_MODEL,
 }
+
+export const SUCCESS_MESSAGE = (message) => {
+  return {
+    type: 'success',
+    text: message,
+  }
+}
+
+export const WARNING_MESSAGE = (message) => {
+  return {
+    type: 'error',
+    text: message,
+  }
+}

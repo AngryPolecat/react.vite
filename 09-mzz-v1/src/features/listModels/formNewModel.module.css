@@ -1,0 +1,12 @@
+.label {
+  font-size: 12px;
+  font-weight: bold;
+  color: slategray;
+  /* padding: 5px 0; */
+  margin: 5px 0 0 10px;
+}
+
+.field {
+  margin-bottom: 10px;
+  border: 1px slategray solid;
+}
