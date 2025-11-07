@@ -1,0 +1,14 @@
+.label {
+  font-size: 12px;
+  font-weight: bold;
+  color: white;
+  /* padding: 5px 0; */
+  margin: 5px 0 0 10px;
+}
+
+.field {
+  margin-bottom: 10px;
+  border: 1px white solid;
+  margin: 10px;
+  border-radius: 5px;
+}

@@ -15,6 +15,10 @@ export const UserPanel = () => {
     navigate('/login')
   }
 
+  const handlerHomePage = () => {
+    navigate('/')
+  }
+
   return (
     <div className={styles.panel}>
       <div>
@@ -23,7 +27,7 @@ export const UserPanel = () => {
       <div>
         <div className={styles.info}>Миловидов Виталий Валерьевич</div>
         <div className={styles.buttons}>
-          <Icon type="fa-home" size="fa-3x" title="На главную страницу" />
+          <Icon type="fa-home" size="fa-3x" title="На главную страницу" onclick={handlerHomePage} />
           <Icon type="fa-cogs" size="fa-3x" title="Настройки пользователя" />
           <Icon type="fa-sign-out" size="fa-3x" title="Выход из системы" onclick={handlerExit} />
         </div>

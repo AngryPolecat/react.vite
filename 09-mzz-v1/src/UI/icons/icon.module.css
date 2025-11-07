@@ -41,9 +41,6 @@
   color: #cb4154;
 }
 
-.icon-table-models-menu {
-}
-
 .icon-header-models-menu {
   margin: 5px 15px 0 0;
 }
@@ -57,4 +54,11 @@
 .icon-save-new-model {
   display: flex;
   justify-content: end;
+}
+
+.icon-has-filter {
+  position: absolute;
+  right: 6px;
+  top: 7px;
+  color: slategray;
 }

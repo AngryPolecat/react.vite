@@ -4,10 +4,12 @@
   flex-wrap: nowrap;
   justify-content: space-between;
   border: 0px solid black;
+  padding-right: 10px;
 }
 
 .list {
   width: 100%;
+  margin-top: 10px;
 }
 
 .header {
@@ -31,11 +33,7 @@
   position: relative;
 }
 
-li {
-  list-style: none;
-}
-
-li:nth-child(2n) {
+.model:nth-child(2n) {
   background-color: #b0e0e6;
 }
 

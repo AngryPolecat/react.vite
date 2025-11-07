@@ -1,6 +1,7 @@
 .container {
   height: 100vh;
   background-color: slategray;
+  margin-right: 10px;
 }
 
 .hidden {

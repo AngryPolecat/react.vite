@@ -1,6 +1,6 @@
 import { createSlice } from '@reduxjs/toolkit'
 
-const initialState = { loader: false, message: { text: '', type: null }, extraPanel: false }
+const initialState = { loader: false, message: { text: '', type: null }, extraPanel: false, filterPanel: false, statusLoadingLists: false }
 
 const optionsSlice = createSlice({
   name: 'options',
@@ -19,10 +19,18 @@ const optionsSlice = createSlice({
     },
     toggleExtraPanel(state, action) {
       state.extraPanel = action.payload
+      state.filterPanel = state.extraPanel ? false : state.filterPanel
+    },
+    toggleFilterPanel(state, action) {
+      state.filterPanel = !state.filterPanel
+      state.extraPanel = state.filterPanel ? false : state.extraPanel
+    },
+    toggleStatusLoadingLists(state, action) {
+      state.statusLoadingLists = action.payload
     },
   },
 })
 
 export default optionsSlice.reducer
 
-export const { toggleLoader, showMessage, closeMessage, toggleExtraPanel } = optionsSlice.actions
+export const { toggleLoader, showMessage, closeMessage, toggleExtraPanel, toggleFilterPanel, toggleStatusLoadingLists } = optionsSlice.actions

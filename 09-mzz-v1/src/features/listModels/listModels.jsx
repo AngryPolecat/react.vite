@@ -1,4 +1,4 @@
-import { useEffect, useLayoutEffect, useState } from 'react'
+import { useEffect, useState } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import styles from './listModels.module.css'
 import { loaderData } from '../../utils/loaderData'
@@ -10,6 +10,8 @@ import { closeMessage, showMessage, toggleExtraPanel, toggleLoader } from '../..
 import { URL, SETTINGS, SUCCESS_MESSAGE, WARNING_MESSAGE } from '../../const/const'
 import { RightPanel } from '../../components/rightPanel/rightPanel'
 import { FormNewModel } from './formNewModel'
+import { FilterPanel } from '../../components/filterPanel/filterPanel'
+import { FilterListModels } from './filterListModels'
 
 export const ListModels = () => {
   const [showMenuModels, setShowMenuModels] = useState(false)
@@ -19,11 +21,14 @@ export const ListModels = () => {
   const dispatch = useDispatch()
   const models = useSelector((state) => state.listModels.models)
   const extraPanel = useSelector((state) => state.options.extraPanel)
+  const filterPanel = useSelector((state) => state.options.filterPanel)
+  const currentYear = useSelector((state) => state.lists.currentYear.code)
   const comparedModels = models.filter((model) => (model.choice ? model : null))
+  console.log(currentYear)
 
   useEffect(() => {
-    const data = { year: 2025 }
-    // dispatch(toggleLoader(true))
+    const data = { year: currentYear }
+    //dispatch(toggleLoader(true))
     loaderData(URL.URL_GET_LIST_MODELS, data)
       .then((result) => {
         if (result.error) {
@@ -33,18 +38,18 @@ export const ListModels = () => {
       })
       .catch((error) => dispatch(showMessage(WARNING_MESSAGE(error.message))))
       .finally(() => {
-        // dispatch(toggleLoader(false))
-        // dispatch(showMessage({ type: 'success', text: 'Модели успешно загружены' }))
+        //dispatch(toggleLoader(false))
+        dispatch(showMessage({ type: 'success', text: 'Модели успешно загружены' }))
         setTimeout(() => dispatch(closeMessage()), SETTINGS.MESSAGE_OPENING_LIMIT)
       })
-  }, [])
+  }, [currentYear])
 
   const handlerMenuModels = () => {
     setShowMenuModels((prev) => !prev)
   }
 
   const handlerSaveNewModel = () => {
-    const data = { description: descriptionNewModel, date: dateNewModel }
+    const data = { description: descriptionNewModel, date: dateNewModel, year: currentYear }
     loaderData(URL.URL_ADD_MODEL, data)
       .then((result) => {
         if (result.error) {
@@ -65,15 +70,23 @@ export const ListModels = () => {
     const currentDateTime = Date.now()
     const date = new Date(currentDateTime)
     const stringDate = date.getDate() + '/' + (date.getMonth() + 1) + '/' + date.getFullYear() + ' ' + date.getHours() + ':' + (date.getMinutes() < 10 ? '0' : '') + date.getMinutes()
-    const lastModel = models.reduce((acc, curr) => (acc.b > curr.b ? acc : curr))
     dispatch(toggleExtraPanel(true))
     setShowMenuModels(false)
     setDateNewModel(stringDate)
-    setNumberNewModel(lastModel.num + 1)
+    if (models.length) {
+      const lastModel = models.reduce((acc, curr) => (acc.b > curr.b ? acc : curr))
+      setNumberNewModel(lastModel.num + 1)
+    } else {
+      setNumberNewModel(1)
+    }
+    //
   }
 
   return (
     <div className={styles.container}>
+      <div>
+        <FilterPanel>{filterPanel && <FilterListModels />}</FilterPanel>
+      </div>
       <div className={styles.list}>
         <div className={styles.header}>
           <span>Список моделей</span>
@@ -102,7 +115,7 @@ export const ListModels = () => {
         </div>
         <ul>
           {models.map((model) => (
-            <li key={model.uuid}>
+            <li className={styles.model} key={model.uuid}>
               <Model model={model} />
             </li>
           ))}

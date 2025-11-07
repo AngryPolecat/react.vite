@@ -10,3 +10,7 @@
   font-family: Verdana, Tahoma, Arial;
   color: #474a51;
 }
+
+li {
+  list-style: none;
+}

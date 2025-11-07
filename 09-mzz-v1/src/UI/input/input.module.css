@@ -17,3 +17,10 @@
   margin: 5px 10px;
   background-color: #f4f0ec;
 }
+
+.input-filter {
+  font-size: 14px;
+  outline: none;
+  padding: 5px;
+  width: 100%;
+}
