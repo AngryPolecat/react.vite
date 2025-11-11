@@ -2,7 +2,7 @@ import { useEffect, useState } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import styles from './listModels.module.css'
 import { loaderData } from '../../utils/loaderData'
-import { setListModels, addModel } from './listModelsSlice'
+import { setListModels, addModel, closeMenuModel } from './listModelsSlice'
 import { Model } from './model'
 import { Icon } from '../../UI/icons/icon'
 import { DropMenu } from '../../UI/dropMenu/dropMenu'
@@ -24,7 +24,6 @@ export const ListModels = () => {
   const filterPanel = useSelector((state) => state.options.filterPanel)
   const currentYear = useSelector((state) => state.lists.currentYear.code)
   const comparedModels = models.filter((model) => (model.choice ? model : null))
-  console.log(currentYear)
 
   useEffect(() => {
     const data = { year: currentYear }
@@ -66,12 +65,12 @@ export const ListModels = () => {
       })
   }
 
-  const handlerCreateNewModel = () => {
+  const handlerCreateNewModel = (model = null) => {
     const currentDateTime = Date.now()
     const date = new Date(currentDateTime)
     const stringDate = date.getDate() + '/' + (date.getMonth() + 1) + '/' + date.getFullYear() + ' ' + date.getHours() + ':' + (date.getMinutes() < 10 ? '0' : '') + date.getMinutes()
     dispatch(toggleExtraPanel(true))
-    setShowMenuModels(false)
+    !model ? setShowMenuModels(false) : dispatch(closeMenuModel(model.uuid))
     setDateNewModel(stringDate)
     if (models.length) {
       const lastModel = models.reduce((acc, curr) => (acc.b > curr.b ? acc : curr))
@@ -79,7 +78,7 @@ export const ListModels = () => {
     } else {
       setNumberNewModel(1)
     }
-    //
+    !model ? setDescriptionNewModel('') : setDescriptionNewModel(`Копия модели №${model.num} от ${model.createdString}`)
   }
 
   return (
@@ -116,7 +115,7 @@ export const ListModels = () => {
         <ul>
           {models.map((model) => (
             <li className={styles.model} key={model.uuid}>
-              <Model model={model} />
+              <Model model={model} copyModel={() => handlerCreateNewModel(model)} />
             </li>
           ))}
         </ul>

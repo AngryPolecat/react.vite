@@ -21,7 +21,7 @@ export const FormNewModel = ({ date, num, description, saveNewModel, onChangeDes
       <div className={styles.field}>
         <div className={styles.label}>Основание модели</div>
         <div>
-          <TextAreaUI onchange={onChangeDescription}>{description}</TextAreaUI>
+          <TextAreaUI onchange={onChangeDescription} value={description} />
         </div>
       </div>
       <Icon type="fa-floppy-o" size="fa-2x" title="Создать новую модель" icon="icon-save-new-model" onclick={saveNewModel} />

@@ -1,12 +1,13 @@
-import { useDispatch, useSelector } from 'react-redux'
+import { useDispatch } from 'react-redux'
 import styles from './model.module.css'
 import { Icon } from '../../UI/icons/icon'
 import { choiceModel, openMenuModel } from './listModelsSlice'
 import { DropMenu } from '../../UI/dropMenu/dropMenu'
+import { useNavigate } from 'react-router-dom'
 
-export const Model = ({ model }) => {
+export const Model = ({ model, copyModel }) => {
   const dispatch = useDispatch()
-  // const countChoiceModel = useSelector(state => )
+  const navigate = useNavigate()
 
   const handlerChoiceModel = (uuid) => {
     dispatch(choiceModel(uuid))
@@ -14,6 +15,10 @@ export const Model = ({ model }) => {
 
   const handlerMenuModel = (uuid) => {
     dispatch(openMenuModel(uuid))
+  }
+
+  const handlerOpenModel = (uuid) => {
+    navigate(`/model/${uuid}`)
   }
 
   return (
@@ -48,8 +53,8 @@ export const Model = ({ model }) => {
         <Icon type="fa-ellipsis-h" size="fa-1x" title="Показать меню" icon="icon-table-models-menu" onclick={() => handlerMenuModel(model.uuid)} />
         {model.showMenu && (
           <DropMenu type="model-menu">
-            <div>Открыть</div>
-            <div>Сделать копию</div>
+            <div onClick={() => handlerOpenModel(model.uuid)}>Открыть</div>
+            <div onClick={copyModel}>Сделать копию</div>
             {!model.released && !model.editable ? <div>Открыть на редактирование</div> : null}
             {!model.released && model.editable ? <div>Закрыть на редактирование</div> : null}
             {!model.released && !model.editable ? <div>Опубликовать</div> : null}

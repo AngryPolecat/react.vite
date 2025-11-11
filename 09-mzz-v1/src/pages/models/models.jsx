@@ -10,7 +10,7 @@ export const ModelsPage = () => {
 
   useEffect(() => {
     !status && navigate('/')
-  })
+  }, [])
 
   return (
     <div className={styles.container}>

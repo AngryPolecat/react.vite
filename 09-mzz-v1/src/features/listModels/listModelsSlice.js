@@ -15,6 +15,9 @@ const listModelsSlice = createSlice({
     openMenuModel(state, action) {
       state.models = state.models.map((model) => (model.uuid === action.payload ? { ...model, showMenu: !model.showMenu } : { ...model, showMenu: false }))
     },
+    closeMenuModel(state, action) {
+      state.models = state.models.map((model) => (model.uuid === action.payload ? { ...model, showMenu: false } : model))
+    },
     addModel(state, action) {
       state.models.push({ ...action.payload, showMenu: false, choice: false })
     },
@@ -23,4 +26,4 @@ const listModelsSlice = createSlice({
 
 export default listModelsSlice.reducer
 
-export const { setListModels, choiceModel, openMenuModel, addModel } = listModelsSlice.actions
+export const { setListModels, choiceModel, openMenuModel, addModel, closeMenuModel } = listModelsSlice.actions
