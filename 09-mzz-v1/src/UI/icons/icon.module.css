@@ -24,6 +24,11 @@
   cursor: auto;
 }
 
+.icon-table-lpu-menu {
+  margin-top: 0px;
+  cursor: pointer;
+}
+
 .icon-table-models-choice-yes i,
 .icon-table-models-choice-no i,
 .icon-table-models-menu i,
@@ -61,4 +66,15 @@
   right: 6px;
   top: 7px;
   color: slategray;
+}
+
+.icon-pangination-active i {
+  color: slategray;
+  margin: 0 5px;
+  cursor: pointer;
+}
+
+.icon-pangination i {
+  margin: 0 5px;
+  color: #d3d3d3;
 }

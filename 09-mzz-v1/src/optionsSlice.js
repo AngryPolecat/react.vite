@@ -25,6 +25,9 @@ const optionsSlice = createSlice({
       state.filterPanel = !state.filterPanel
       state.extraPanel = state.filterPanel ? false : state.extraPanel
     },
+    closeFilterPanel(state, action) {
+      state.filterPanel = false
+    },
     toggleStatusLoadingLists(state, action) {
       state.statusLoadingLists = action.payload
     },
@@ -33,4 +36,4 @@ const optionsSlice = createSlice({
 
 export default optionsSlice.reducer
 
-export const { toggleLoader, showMessage, closeMessage, toggleExtraPanel, toggleFilterPanel, toggleStatusLoadingLists } = optionsSlice.actions
+export const { toggleLoader, showMessage, closeMessage, toggleExtraPanel, toggleFilterPanel, toggleStatusLoadingLists, closeFilterPanel } = optionsSlice.actions

@@ -14,7 +14,7 @@ export const DropList = ({ list, current, onchange }) => {
 
   const handlerChangeFilter = ({ target }) => {
     setText(target.value)
-    setItems(list.filter((item) => (item.description.indexOf(target.value) > -1 ? item : null)))
+    setItems(list.filter((item) => (item.description.toLowerCase().indexOf(target.value.toLowerCase()) > -1 ? item : null)))
   }
 
   const handlerСhoiceItemList = (item) => {

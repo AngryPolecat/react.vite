@@ -1,5 +1,6 @@
 .model-menu,
-.models-menu {
+.models-menu,
+.lpu-menu {
   position: absolute;
   padding: 0px !important;
   background-color: slategray;
@@ -11,8 +12,8 @@
 }
 
 .model-menu {
-  top: 25px;
-  left: -165px;
+  top: -80px;
+  left: -185px;
 }
 
 .models-menu {
@@ -20,8 +21,14 @@
   left: -185px;
 }
 
+.lpu-menu {
+  top: -100px;
+  left: -185px;
+}
+
 .model-menu div,
-.models-menu div {
+.models-menu div,
+.lpu-menu div {
   font-size: 12px;
   color: white;
   cursor: pointer;
@@ -29,10 +36,12 @@
 }
 
 .model-menu div:hover,
-.models-menu div:hover {
+.models-menu div:hover,
+.lpu-menu div:hover {
   color: #add8e6;
 }
 
-.models-menu div {
+.models-menu div,
+.lpu-menu div {
   padding: 10px;
 }

@@ -12,12 +12,15 @@ import { RightPanel } from '../../components/rightPanel/rightPanel'
 import { FormNewModel } from './formNewModel'
 import { FilterPanel } from '../../components/filterPanel/filterPanel'
 import { FilterListModels } from './filterListModels'
+import { Pangination } from '../../UI/pangination/pangination'
 
 export const ListModels = () => {
   const [showMenuModels, setShowMenuModels] = useState(false)
   const [dateNewModel, setDateNewModel] = useState(null)
   const [numberNewModel, setNumberNewModel] = useState(null)
   const [descriptionNewModel, setDescriptionNewModel] = useState('')
+  const [currentPagePanginations, setCurrentPagePanginations] = useState(1)
+  const [countPanginations, setCountPanginations] = useState(1)
   const dispatch = useDispatch()
   const models = useSelector((state) => state.listModels.models)
   const extraPanel = useSelector((state) => state.options.extraPanel)
@@ -26,7 +29,7 @@ export const ListModels = () => {
   const comparedModels = models.filter((model) => (model.choice ? model : null))
 
   useEffect(() => {
-    const data = { year: currentYear }
+    const data = { year: currentYear, model: '' }
     //dispatch(toggleLoader(true))
     loaderData(URL.URL_GET_LIST_MODELS, data)
       .then((result) => {
@@ -34,6 +37,8 @@ export const ListModels = () => {
           return
         }
         dispatch(setListModels(result.dataset))
+        setCountPanginations(result.dataset.length / SETTINGS.LIMIT_MODELS_ON_PAGE)
+        setCurrentPagePanginations(1)
       })
       .catch((error) => dispatch(showMessage(WARNING_MESSAGE(error.message))))
       .finally(() => {
@@ -81,6 +86,14 @@ export const ListModels = () => {
     !model ? setDescriptionNewModel('') : setDescriptionNewModel(`Копия модели №${model.num} от ${model.createdString}`)
   }
 
+  const handlerPrevPage = () => {
+    setCurrentPagePanginations((prev) => prev - 1)
+  }
+
+  const handlerNextPage = () => {
+    setCurrentPagePanginations((prev) => prev + 1)
+  }
+
   return (
     <div className={styles.container}>
       <div>
@@ -88,7 +101,10 @@ export const ListModels = () => {
       </div>
       <div className={styles.list}>
         <div className={styles.header}>
-          <span>Список моделей</span>
+          <div className={styles.description}>
+            <span>Список моделей</span>
+            {countPanginations > 1 && <Pangination pages={countPanginations} current={currentPagePanginations} onClickPrev={handlerPrevPage} onClickNext={handlerNextPage} />}
+          </div>
           <div className={styles.menuModels}>
             <Icon type="fa-ellipsis-h" size="fa-1x" title="Показать меню" icon="icon-header-models-menu" onclick={handlerMenuModels} />
             {showMenuModels && (
@@ -113,11 +129,15 @@ export const ListModels = () => {
           </div>
         </div>
         <ul>
-          {models.map((model) => (
-            <li className={styles.model} key={model.uuid}>
-              <Model model={model} copyModel={() => handlerCreateNewModel(model)} />
-            </li>
-          ))}
+          {models.map(
+            (model, index) =>
+              (currentPagePanginations - 1) * SETTINGS.LIMIT_MODELS_ON_PAGE <= index &&
+              SETTINGS.LIMIT_MODELS_ON_PAGE * currentPagePanginations - 1 >= index && (
+                <li className={styles.model} key={model.uuid}>
+                  <Model model={model} copyModel={() => handlerCreateNewModel(model)} />
+                </li>
+              ),
+          )}
         </ul>
       </div>
       <div>

@@ -1,0 +1,33 @@
+.container {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: nowrap;
+}
+
+.container .fields {
+  text-align: center;
+  padding: 5px;
+  font-size: 14px;
+  height: 30px;
+  line-height: 20px;
+  position: relative;
+}
+
+.codeLpu {
+  width: 100px;
+}
+
+.innLpu {
+  width: 150px;
+}
+
+.nameLpu {
+  width: calc(100% - 300px);
+  overflow: hidden;
+  text-align: left !important;
+}
+
+.menuLpu {
+  width: 50px;
+  position: relative;
+}

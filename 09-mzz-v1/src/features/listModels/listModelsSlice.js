@@ -1,6 +1,6 @@
 import { createSlice } from '@reduxjs/toolkit'
 
-const initialState = { models: [] }
+const initialState = { models: [], currentModel: null }
 
 const listModelsSlice = createSlice({
   name: 'listModels',
@@ -8,6 +8,9 @@ const listModelsSlice = createSlice({
   reducers: {
     setListModels(state, action) {
       state.models = action.payload.map((model) => ({ ...model, choice: false, showMenu: false }))
+    },
+    setCurrentModel(state, action) {
+      state.currentModel = action.payload
     },
     choiceModel(state, action) {
       state.models = state.models.map((model) => (model.uuid === action.payload ? { ...model, choice: !model.choice } : model))
@@ -26,4 +29,4 @@ const listModelsSlice = createSlice({
 
 export default listModelsSlice.reducer
 
-export const { setListModels, choiceModel, openMenuModel, addModel, closeMenuModel } = listModelsSlice.actions
+export const { setListModels, choiceModel, openMenuModel, addModel, closeMenuModel, setCurrentModel } = listModelsSlice.actions

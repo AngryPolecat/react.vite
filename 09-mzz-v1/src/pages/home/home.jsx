@@ -13,8 +13,11 @@ export const HomePage = () => {
   useEffect(() => {
     dispatch(toggleStatusLoadingLists(false))
     dispatch(toggleLoader(true))
+
     loaderData(URL.URL_LOAD_LISTS)
       .then((result) => {
+        console.log(result)
+
         if (result.error) {
           dispatch(showMessage(WARNING_MESSAGE('Ошибка загрузки справочников. ' + result.msg)))
           return

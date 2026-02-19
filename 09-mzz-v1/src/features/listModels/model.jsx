@@ -1,9 +1,10 @@
 import { useDispatch } from 'react-redux'
 import styles from './model.module.css'
 import { Icon } from '../../UI/icons/icon'
-import { choiceModel, openMenuModel } from './listModelsSlice'
+import { choiceModel, openMenuModel, setCurrentModel } from './listModelsSlice'
 import { DropMenu } from '../../UI/dropMenu/dropMenu'
 import { useNavigate } from 'react-router-dom'
+import { closeFilterPanel } from '../../optionsSlice'
 
 export const Model = ({ model, copyModel }) => {
   const dispatch = useDispatch()
@@ -18,7 +19,9 @@ export const Model = ({ model, copyModel }) => {
   }
 
   const handlerOpenModel = (uuid) => {
-    navigate(`/model/${uuid}`)
+    dispatch(closeFilterPanel())
+    dispatch(setCurrentModel(uuid))
+    navigate(`/model/${uuid}/lpu`)
   }
 
   return (

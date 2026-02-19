@@ -3,13 +3,13 @@
   flex-direction: row;
   flex-wrap: nowrap;
   justify-content: space-between;
-  border: 0px solid black;
   padding-right: 10px;
+  width: 100%;
 }
 
 .list {
-  width: 100%;
   margin-top: 10px;
+  width: 100%;
 }
 
 .description {
@@ -36,58 +36,36 @@
   line-height: 35px;
 }
 
-.menuModels {
-  position: relative;
-}
-
-.model:nth-child(2n) {
+.lpu:nth-child(2n) {
   background-color: #b0e0e6;
 }
 
-.headerListModel {
+.headerListLpu {
   display: flex;
   flex-direction: row;
   flex-wrap: nowrap;
   background-color: #4682b4;
+  width: 100%;
 }
 
-.headerListModel div {
+.headerListLpu div {
   padding: 10px;
   color: #d3d3d3;
   text-align: center;
-  border: 0px solid black;
 }
 
-.headerChoiceModel,
-.headerMenuModel {
-  width: 50px;
+.headerCodeLpu {
+  width: 100px;
 }
 
-.headerChoiceModelCorrect {
-  width: 30px;
-}
-
-.headerMenuModelCorrect {
-  width: 32px;
-}
-
-.headerDateModel {
-  width: 350px;
-}
-
-.headerNumModel {
-  width: 250px;
-}
-
-.headerEditModel {
+.headerInnLpu {
   width: 150px;
 }
 
-.headerReleaseModel {
-  width: 250px;
+.headerNameLpu {
+  width: calc(100% - 300px);
 }
 
-.headerDescriptionModel {
-  /* width: 500px; */
-  width: 100%;
+.headerMenuLpu {
+  width: 50px;
 }
