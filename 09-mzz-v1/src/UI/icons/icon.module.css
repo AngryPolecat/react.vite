@@ -78,3 +78,13 @@
   margin: 0 5px;
   color: #d3d3d3;
 }
+
+.icon-chech-standart {
+  font-weight: lighter;
+}
+
+.button-back {
+  margin: 0 10px;
+  cursor: pointer;
+  color: slategray;
+}

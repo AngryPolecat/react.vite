@@ -30,7 +30,6 @@ export const ListModels = () => {
 
   useEffect(() => {
     const data = { year: currentYear, model: '' }
-    //dispatch(toggleLoader(true))
     loaderData(URL.URL_GET_LIST_MODELS, data)
       .then((result) => {
         if (result.error) {
@@ -78,7 +77,7 @@ export const ListModels = () => {
     !model ? setShowMenuModels(false) : dispatch(closeMenuModel(model.uuid))
     setDateNewModel(stringDate)
     if (models.length) {
-      const lastModel = models.reduce((acc, curr) => (acc.b > curr.b ? acc : curr))
+      const lastModel = models.reduce((acc, curr) => (acc.num > curr.num ? acc : curr))
       setNumberNewModel(lastModel.num + 1)
     } else {
       setNumberNewModel(1)

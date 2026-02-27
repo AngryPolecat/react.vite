@@ -1,9 +1,11 @@
 import { useDispatch, useSelector } from 'react-redux'
 import { useNavigate } from 'react-router-dom'
+import { v4 as uuidv4 } from 'uuid'
 import { Icon } from '../../UI/icons/icon'
 import styles from './lpu.module.css'
 import { openMenuLpu, setCurrentLpu } from './listLpuSlice'
 import { DropMenu } from '../../UI/dropMenu/dropMenu'
+import { closeFilterPanel } from '../../optionsSlice'
 
 export const Lpu = ({ lpu }) => {
   const dispatch = useDispatch()
@@ -14,9 +16,11 @@ export const Lpu = ({ lpu }) => {
     dispatch(openMenuLpu(mcod))
   }
 
-  const handlerOpenLpu = (mcod) => {
-    dispatch(setCurrentLpu(mcod))
-    navigate(`/model/${modelId}/lpu/${mcod}`)
+  const handlerOpenLpu = (mcod, id, name) => {
+    const currentLpu = { mcod, uuid: uuidv4(), id, name }
+    dispatch(setCurrentLpu(currentLpu))
+    dispatch(closeFilterPanel())
+    navigate(`/model/${modelId}/lpu/${currentLpu.uuid}`)
   }
 
   return (
@@ -28,7 +32,7 @@ export const Lpu = ({ lpu }) => {
         <Icon type="fa-ellipsis-h" size="fa-1x" title="Показать меню" icon="icon-table-lpu-menu" onclick={() => handlerMenuLpu(lpu.mcod)} />
         {lpu.showMenu && (
           <DropMenu type="lpu-menu">
-            <div onClick={() => handlerOpenLpu(lpu.mcod)}>Открыть</div>
+            <div onClick={() => handlerOpenLpu(lpu.mcod, lpu.id, lpu.name)}>Открыть</div>
             <div>Пункт 2</div>
             <div>Пункт 3</div>
           </DropMenu>

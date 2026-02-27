@@ -1,0 +1,14 @@
+.container {
+  padding: 5px;
+  font-size: 12px;
+  cursor: pointer;
+  display: flex;
+  flex-direction: row;
+  flex-wrap: nowrap;
+  justify-content: space-between;
+}
+
+.container.active {
+  background-color: #e5e4e2;
+  font-weight: bolder;
+}

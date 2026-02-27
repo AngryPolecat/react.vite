@@ -1,6 +1,6 @@
 import { createSlice } from '@reduxjs/toolkit'
 
-const initialState = { lpu: [], filteredLpu: [], currentLpu: null }
+const initialState = { lpu: [], filteredLpu: [], currentLpu: { mcod: null, uuid: null, id: null, name: null } }
 
 const listLpuSlice = createSlice({
   name: 'listLpu',
