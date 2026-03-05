@@ -6,6 +6,7 @@ import styles from './listMpModel.module.css'
 import { ListMp } from './listMp'
 import { ListDepartment } from './listDepartment'
 import { closeFilterPanel } from '../../optionsSlice'
+import { SelectedVariant } from './selectedVariant'
 
 export const ListMpModel = () => {
   const filterPanel = useSelector((state) => state.options.filterPanel)
@@ -40,7 +41,9 @@ export const ListMpModel = () => {
           <div className={styles.listDepartment}>
             <ListDepartment />
           </div>
-          <div className={styles.selectedVariant}>Список выбранных вариантов</div>
+          <div className={styles.selectedVariant}>
+            <SelectedVariant />
+          </div>
           <div className={styles.possibleVariant}>Список возможных вариантов</div>
         </div>
       </div>

@@ -1,5 +1,5 @@
 import { useNavigate } from 'react-router-dom'
-import { useEffect, useState } from 'react'
+import { useEffect } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import styles from './listDepartment.module.css'
 import { URL } from '../../const/const'
@@ -8,8 +8,6 @@ import { Department } from './department'
 import { setCurrentDepartment, setListDepartment } from './listDepartmentSlice'
 
 export const ListDepartment = () => {
-  //   const [departments, setDepartment] = useState([])
-  const currentDepartment = useSelector((state) => state.listDepartment.currentDepartment)
   const departments = useSelector((state) => state.listDepartment.departments)
   const currentLpuId = useSelector((state) => state.listLpu.currentLpu.id)
   const currentModel = useSelector((state) => state.listModels.currentModel)
@@ -26,7 +24,6 @@ export const ListDepartment = () => {
         if (result.error) {
           return
         }
-        // setDepartment(result.dataset)
         dispatch(setListDepartment(result.dataset))
       })
       .catch((error) => dispatch(showMessage(WARNING_MESSAGE(error.message))))

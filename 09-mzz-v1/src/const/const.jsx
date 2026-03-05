@@ -8,6 +8,7 @@ const URL_ADD_MODEL = 'http://srv01.kemoms.ru/php/createModel.php'
 const URL_LOAD_LISTS = 'http://srv01.kemoms.ru/php/getLists.php'
 const URL_GET_LIST_LPU = 'http://srv01.kemoms.ru/php/getListLpu.php'
 const URL_GET_LIST_DEP = 'http://srv01.kemoms.ru/php/getListDepartment.php'
+const URL_GET_DATA_MODEL = 'http://srv01.kemoms.ru/php/getDatasetModel.php'
 
 export const MIN_LENGTH_LOGIN = 5
 export const MIN_LENGTH_PASS = 8
