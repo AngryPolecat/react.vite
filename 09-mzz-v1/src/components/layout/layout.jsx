@@ -5,6 +5,7 @@ import { Footer } from '../footer/footer'
 import styles from './layout.module.css'
 import { Loader } from '../../UI/loader/loader'
 import { Message } from '../../UI/message/message'
+import { ModalWin } from '../modalWin/modalWin'
 
 export const Layout = () => {
   const loader = useSelector((state) => state.options.loader)
@@ -16,6 +17,7 @@ export const Layout = () => {
         <Loader />
       ) : (
         <>
+          <ModalWin />
           <Header />
           <div className={styles.main}>
             <Outlet />

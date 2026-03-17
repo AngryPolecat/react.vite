@@ -25,3 +25,12 @@
   width: 100%;
   padding-right: 20px;
 }
+
+.input-filter-variant {
+  font-size: 12px;
+  outline: none;
+  padding: 5px;
+  width: 100%;
+  border-radius: 7px;
+  border: 1px solid black;
+}

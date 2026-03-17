@@ -5,17 +5,21 @@ import { FilterListMpModel } from './filterListMpModel'
 import styles from './listMpModel.module.css'
 import { ListMp } from './listMp'
 import { ListDepartment } from './listDepartment'
-import { closeFilterPanel } from '../../optionsSlice'
+import { closeFilterPanel, toggleExtraPanel } from '../../optionsSlice'
 import { SelectedVariant } from './selectedVariant'
+import { RightPanel } from '../../components/rightPanel/rightPanel'
+import { PossibleVariant } from './possibleVariant'
 
 export const ListMpModel = () => {
   const filterPanel = useSelector((state) => state.options.filterPanel)
   const nameLpu = useSelector((state) => state.listLpu.currentLpu.name)
+  const extraPanel = useSelector((state) => state.options.extraPanel)
   const navigate = useNavigate()
   const dispatch = useDispatch()
 
   const handlerClickBack = () => {
     dispatch(closeFilterPanel())
+    dispatch(toggleExtraPanel(false))
     navigate(-1)
   }
 
@@ -44,7 +48,7 @@ export const ListMpModel = () => {
           <div className={styles.selectedVariant}>
             <SelectedVariant />
           </div>
-          <div className={styles.possibleVariant}>Список возможных вариантов</div>
+          <div className={styles.extraPanel}>{extraPanel && <RightPanel header="Добавить вариант">{<PossibleVariant />}</RightPanel>}</div>
         </div>
       </div>
     </div>

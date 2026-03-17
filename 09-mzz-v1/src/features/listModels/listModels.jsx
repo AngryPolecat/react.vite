@@ -139,7 +139,7 @@ export const ListModels = () => {
           )}
         </ul>
       </div>
-      <div>
+      <div className={styles.extraPanel}>
         {extraPanel && (
           <RightPanel header="Новая модель">
             <FormNewModel

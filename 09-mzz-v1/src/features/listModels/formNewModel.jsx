@@ -5,7 +5,7 @@ import styles from './formNewModel.module.css'
 
 export const FormNewModel = ({ date, num, description, saveNewModel, onChangeDescription }) => {
   return (
-    <>
+    <div className={styles.container}>
       <div className={styles.field}>
         <div className={styles.label}>Дата создания</div>
         <div>
@@ -25,6 +25,6 @@ export const FormNewModel = ({ date, num, description, saveNewModel, onChangeDes
         </div>
       </div>
       <Icon type="fa-floppy-o" size="fa-2x" title="Создать новую модель" icon="icon-save-new-model" onclick={saveNewModel} />
-    </>
+    </div>
   )
 }

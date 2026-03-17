@@ -6,3 +6,11 @@
   overflow: auto;
   height: calc(100% - 80px);
 }
+
+.header {
+  background-color: #4682b4;
+  padding: 5px;
+  color: #d3d3d3;
+  font-size: 14px;
+  text-align: center;
+}

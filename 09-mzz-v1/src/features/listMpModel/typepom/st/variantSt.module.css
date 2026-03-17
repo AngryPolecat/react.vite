@@ -1,0 +1,38 @@
+.container {
+}
+
+.variant {
+  height: calc(100vh - 320px);
+  overflow: auto;
+  padding: 0 5px;
+}
+
+.item {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: nowrap;
+  cursor: pointer;
+}
+
+.item div {
+  padding: 3px;
+}
+
+.itemString:nth-child(2n) {
+  background-color: #b0e0e6;
+}
+
+.itemFed {
+  width: 80px;
+  font-size: 11px;
+}
+
+.itemName {
+  width: calc(100% - 80px);
+  font-size: 11px;
+}
+
+.filter {
+  margin-bottom: 10px;
+  padding: 0 10px;
+}

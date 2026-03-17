@@ -32,15 +32,16 @@ export const ListDepartment = () => {
       })
   }, [currentLpuId])
 
-  const handlerClickDepartment = (departmentCode) => {
-    dispatch(setCurrentDepartment(departmentCode))
+  const handlerClickDepartment = (departmentId, departmentCode) => {
+    dispatch(setCurrentDepartment({ id: departmentId, code: departmentCode }))
   }
 
   return (
     <div className={styles.container}>
+      <div className={styles.header}>Подразделения</div>
       <ul>
         {departments.map((department) => (
-          <Department key={department.id} department={department} onclick={() => handlerClickDepartment(department.id)} />
+          <Department key={department.id} department={department} onclick={() => handlerClickDepartment(department.id, department.code)} />
         ))}
       </ul>
     </div>

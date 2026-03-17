@@ -1,6 +1,6 @@
 import { createSlice } from '@reduxjs/toolkit'
 
-const initialState = { departments: [], currentDepartment: null }
+const initialState = { departments: [], currentDepartment: { id: null, code: null } }
 
 const listDepartmentSlice = createSlice({
   name: 'listDepartment',
@@ -8,7 +8,7 @@ const listDepartmentSlice = createSlice({
   reducers: {
     setListDepartment(state, action) {
       state.departments = action.payload
-      state.currentDepartment = action.payload[0].id
+      state.currentDepartment = { id: action.payload[0].id, code: action.payload[0].code }
     },
     setCurrentDepartment(state, action) {
       state.currentDepartment = action.payload
