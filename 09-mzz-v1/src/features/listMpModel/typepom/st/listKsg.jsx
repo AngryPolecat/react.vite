@@ -1,10 +1,25 @@
 import { useSelector } from 'react-redux'
 import styles from './listKsg.module.css'
+import { Ksg } from './ksg'
 
 export const ListKsg = () => {
   const dataset = useSelector((state) => state.datasetModel.dataset)
-  const dataset2 = useSelector((state) => state.datasetModel.dataset2)
-  // console.log(dataset, dataset2)
+  const currentGroup = useSelector((state) => state.datasetModel.currentGroup)
+  //const dataset2 = useSelector((state) => state.datasetModel.dataset2)
+  // console.log(dataset)
 
-  return <div className={styles.container}>Показать по КСГ</div>
+  return (
+    <div className={styles.container}>
+      <ul>
+        {dataset.map(
+          (ksg) =>
+            (!currentGroup || currentGroup === ksg.kd_gr_ksg) && (
+              <li key={ksg.id} className={styles.data}>
+                <Ksg ksg={ksg} />
+              </li>
+            ),
+        )}
+      </ul>
+    </div>
+  )
 }

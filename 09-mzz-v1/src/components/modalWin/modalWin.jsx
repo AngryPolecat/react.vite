@@ -7,8 +7,6 @@ export const ModalWin = ({ children, header = 'Заголовок окна', tex
   const statusModalWin = useSelector((state) => state.options.statusModalWin)
   const dispatch = useDispatch()
 
-  console.log(statusModalWin)
-
   return (
     <div className={styles.container}>
       {statusModalWin && (
@@ -18,13 +16,11 @@ export const ModalWin = ({ children, header = 'Заголовок окна', tex
               <div className={styles.textHeader}>{header}</div>
               <Icon type="fa-times" size="fa-1x" title="Закрыть" icon="icon-close-modal-win" onclick={(e) => dispatch(toggleStatusModalWin(false))} />
             </div>
-            <div className={styles.contentWin}>
-              <div className={styles.text}>{text}</div>
-              <div className={styles.buttons}>
-                <div>Кнопка 1</div>
-                <div>Кнопка 2</div>
-                <div>Кнопка 3</div>
-              </div>
+            <div className={styles.text}>{text}</div>
+            <div className={styles.buttons}>
+              <div>Кнопка 1</div>
+              <div>Кнопка 2</div>
+              <div>Кнопка 3</div>
             </div>
           </div>
         </div>

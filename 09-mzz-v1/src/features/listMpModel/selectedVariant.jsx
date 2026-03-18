@@ -10,8 +10,10 @@ import { ListKsg } from './typepom/st/listKsg'
 import { Icon } from '../../UI/icons/icon'
 import { ListGroup } from './typepom/st/listGroup'
 import { DropMenu } from '../../UI/dropMenu/dropMenu'
+import { InputUI } from '../../UI/input/input'
 
 export const SelectedVariant = () => {
+  const [textKsg, setTextKsg] = useState('')
   const [showMenu, setShowMenu] = useState(false)
   const currentModel = useSelector((state) => state.listModels.currentModel)
   const currentLpu = useSelector((state) => state.listLpu.currentLpu.mcod)
@@ -56,6 +58,8 @@ export const SelectedVariant = () => {
     setShowMenu(false)
   }
 
+  const handlerChangeFilter = () => {}
+
   switch (currentTypepom) {
     case TYPEPOM.ST:
       return (
@@ -73,6 +77,11 @@ export const SelectedVariant = () => {
                 </div>
               )}
             </div>
+            {(currentGroup || !statusGroupKsg) && (
+              <div className={styles.filter}>
+                <InputUI variant="input-filter-variant" onchange={(e) => handlerChangeFilter(e, setTextKsg)} value={textKsg} placeholder="Часть кода КСГ или названия" />
+              </div>
+            )}
             <div className={styles.menu}>
               <Icon type="fa-ellipsis-h" size="fa-1x" title="Показать меню" icon="icon-header-models-menu" onclick={handlerStatusMenu} />
               {showMenu && (
