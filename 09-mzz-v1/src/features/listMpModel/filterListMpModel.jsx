@@ -12,7 +12,8 @@ export const FilterListMpModel = () => {
 
   const changeCurrentLpu = (item) => {
     const selectedLpu = listLpu.filter((lpu) => lpu.id === item.code)[0]
-    dispatch(setCurrentLpu({ id: selectedLpu.id, uuid: selectedLpu.uuid, mcod: selectedLpu.mcod, name: selectedLpu.name }))
+    //dispatch(setCurrentLpu({ id: selectedLpu.id, uuid: selectedLpu.uuid, mcod: selectedLpu.mcod, name: selectedLpu.name }))
+    dispatch(setCurrentLpu(selectedLpu))
   }
 
   return (

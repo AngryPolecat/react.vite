@@ -18,10 +18,10 @@ export const Model = ({ model, copyModel }) => {
     dispatch(openMenuModel(uuid))
   }
 
-  const handlerOpenModel = (uuid) => {
+  const handlerOpenModel = (model) => {
     dispatch(closeFilterPanel())
-    dispatch(setCurrentModel(uuid))
-    navigate(`/model/${uuid}/lpu`)
+    dispatch(setCurrentModel(model))
+    navigate(`/model/${model.uuid}/lpu`)
   }
 
   return (
@@ -56,7 +56,7 @@ export const Model = ({ model, copyModel }) => {
         <Icon type="fa-ellipsis-h" size="fa-1x" title="Показать меню" icon="icon-table-models-menu" onclick={() => handlerMenuModel(model.uuid)} />
         {model.showMenu && (
           <DropMenu type="model-menu">
-            <div onClick={() => handlerOpenModel(model.uuid)}>Открыть</div>
+            <div onClick={() => handlerOpenModel(model)}>Открыть</div>
             <div onClick={copyModel}>Сделать копию</div>
             {!model.released && !model.editable ? <div>Открыть на редактирование</div> : null}
             {!model.released && model.editable ? <div>Закрыть на редактирование</div> : null}

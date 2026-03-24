@@ -1,4 +1,5 @@
 .container {
+  width: 100%;
 }
 
 .variant {
@@ -18,8 +19,8 @@
   padding: 3px;
 }
 
-.itemString:nth-child(2n) {
-  background-color: #b0e0e6;
+.itemString:nth-child(2n + 1) {
+  background-color: #dcdcdc;
 }
 
 .itemFed {
@@ -36,3 +37,8 @@
   margin-bottom: 10px;
   padding: 0 10px;
 }
+
+/* .itemString.alreadySelected {
+  font-size: 15px;
+  padding: 30px;
+} */

@@ -31,6 +31,7 @@
   outline: none;
   padding: 5px;
   width: 100%;
-  border-radius: 7px;
-  border: 1px solid black;
+  border-radius: 3px;
+  border: 1px solid slategray;
+  margin-top: 3px;
 }

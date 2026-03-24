@@ -11,6 +11,10 @@
   cursor: pointer;
 }
 
+.container.newGrp {
+  background-color: #c9ffe5;
+}
+
 .container:hover {
   background-color: slategray;
 }

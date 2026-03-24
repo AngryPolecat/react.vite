@@ -1,6 +1,21 @@
 import { createSlice } from '@reduxjs/toolkit'
 
-const initialState = { lpu: [], filteredLpu: [], currentLpu: { mcod: null, uuid: null, id: null, name: null } }
+const initialState = { lpu: [], filteredLpu: [], currentLpu: {} }
+
+/* Описание ЛПУ
+  ate: "1" - код АТЕ
+  dstart: "2021-04-01" - начало действия ЛПУ
+  dstop: "3000-12-31" - конец действия ЛПУ
+  id: "12341" - id ЛПУ
+  inn: "4246006426" - ИНН ЛПУ
+  lvl: "2.2" - уровень ЛПУ
+  mcod: "420001" - МКОД
+  name: "ГАУЗ \"Анжеро-Судженская городская больница имени А.А. Гороховского\"" - наименование
+  showMenu: false - показать контекстное меню
+  uuid - генерируемый uuid для строки браузера
+*/
+
+//currentLpu: { mcod: null, uuid: null, id: null, name: null }
 
 const listLpuSlice = createSlice({
   name: 'listLpu',
@@ -11,7 +26,6 @@ const listLpuSlice = createSlice({
       state.filteredLpu = action.payload.map((lpu) => ({ ...lpu, showMenu: false }))
     },
     filteringLpu(state, action) {
-      console.log(action.payload)
       state.filteredLpu = state.lpu.filter(
         (org) =>
           org.mcod.indexOf(action.payload.mcod) !== -1 &&

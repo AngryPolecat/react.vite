@@ -9,7 +9,7 @@
   width: 100%;
   height: 100%;
   background-color: rgba(0, 0, 0, 0.7); /* Полупрозрачный фон */
-  z-index: 1000; /* Высокий z-index для отображения над другими элементами */
+  z-index: 110; /* Высокий z-index для отображения над другими элементами */
   justify-content: center;
   align-items: center;
 }

@@ -101,3 +101,18 @@
   color: slategray;
   margin: 0 10px;
 }
+
+.icon-ksg-choice-yes i,
+.icon-ksg-choice-no i {
+  cursor: pointer;
+  color: slategray;
+  /* margin: 0 10px; */
+}
+
+.icon-marked-remove i {
+  color: coral;
+}
+
+.icon-marked-new i {
+  color: #007f66;
+}

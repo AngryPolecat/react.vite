@@ -10,14 +10,14 @@ import { closeFilterPanel } from '../../optionsSlice'
 export const Lpu = ({ lpu }) => {
   const dispatch = useDispatch()
   const navigate = useNavigate()
-  const modelId = useSelector((state) => state.listModels.currentModel)
+  const modelId = useSelector((state) => state.listModels.currentModel.uuid)
 
   const handlerMenuLpu = (mcod) => {
     dispatch(openMenuLpu(mcod))
   }
 
-  const handlerOpenLpu = (mcod, id, name) => {
-    const currentLpu = { mcod, uuid: uuidv4(), id, name }
+  const handlerOpenLpu = (lpu) => {
+    const currentLpu = { ...lpu, uuid: uuidv4() }
     dispatch(setCurrentLpu(currentLpu))
     dispatch(closeFilterPanel())
     navigate(`/model/${modelId}/lpu/${currentLpu.uuid}`)
@@ -32,7 +32,7 @@ export const Lpu = ({ lpu }) => {
         <Icon type="fa-ellipsis-h" size="fa-1x" title="Показать меню" icon="icon-table-lpu-menu" onclick={() => handlerMenuLpu(lpu.mcod)} />
         {lpu.showMenu && (
           <DropMenu type="lpu-menu">
-            <div onClick={() => handlerOpenLpu(lpu.mcod, lpu.id, lpu.name)}>Открыть</div>
+            <div onClick={() => handlerOpenLpu(lpu)}>Открыть</div>
             <div>Пункт 2</div>
             <div>Пункт 3</div>
           </DropMenu>

@@ -1,6 +1,7 @@
 .container {
   display: flex;
   flex-direction: column;
+  width: 100%;
 }
 
 .activeBar {
@@ -8,6 +9,15 @@
   flex-direction: row;
   flex-wrap: nowrap;
   justify-content: space-between;
+}
+
+.filterBar {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: nowrap;
+  justify-content: flex-start;
+  border: 0px solid black;
+  width: 100%;
 }
 
 .toggle {
@@ -29,5 +39,6 @@
 }
 
 .filter {
-  width: 70%;
+  width: 100%;
+  padding-right: 20px;
 }

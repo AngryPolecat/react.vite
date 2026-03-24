@@ -7,7 +7,9 @@ import { toggleExtraPanel } from '../../../../optionsSlice'
 export const ListGroup = () => {
   const dispatch = useDispatch()
   const dataset2 = useSelector((state) => state.datasetModel.dataset2)
-  // console.log(dataset2)
+    .slice()
+    .sort((a, b) => a.kd_gr_ksg - b.kd_gr_ksg)
+
   const handlerClickGroup = (codeGrp) => {
     dispatch(setCurrentGroup(codeGrp))
     // dispatch(toggleExtraPanel(false))

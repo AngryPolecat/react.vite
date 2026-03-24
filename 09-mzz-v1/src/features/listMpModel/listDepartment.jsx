@@ -6,11 +6,12 @@ import { URL } from '../../const/const'
 import { loaderData } from '../../utils/loaderData'
 import { Department } from './department'
 import { setCurrentDepartment, setListDepartment } from './listDepartmentSlice'
+import { setFilterDataset } from './datasetModelSlice'
 
 export const ListDepartment = () => {
   const departments = useSelector((state) => state.listDepartment.departments)
   const currentLpuId = useSelector((state) => state.listLpu.currentLpu.id)
-  const currentModel = useSelector((state) => state.listModels.currentModel)
+  const currentModel = useSelector((state) => state.listModels.currentModel.uuid)
   const status = useSelector((state) => state.options.statusLoadingLists)
   const navigate = useNavigate()
   const dispatch = useDispatch()
@@ -20,7 +21,7 @@ export const ListDepartment = () => {
     const data = { id: currentLpuId, model: currentModel }
     loaderData(URL.URL_GET_LIST_DEP, data)
       .then((result) => {
-        // console.log(result)
+        //console.log(result)
         if (result.error) {
           return
         }
@@ -32,8 +33,9 @@ export const ListDepartment = () => {
       })
   }, [currentLpuId])
 
-  const handlerClickDepartment = (departmentId, departmentCode) => {
-    dispatch(setCurrentDepartment({ id: departmentId, code: departmentCode }))
+  const handlerClickDepartment = (department) => {
+    // dispatch(setFilterDataset(''))
+    dispatch(setCurrentDepartment(department))
   }
 
   return (
@@ -41,7 +43,7 @@ export const ListDepartment = () => {
       <div className={styles.header}>Подразделения</div>
       <ul>
         {departments.map((department) => (
-          <Department key={department.id} department={department} onclick={() => handlerClickDepartment(department.id, department.code)} />
+          <Department key={department.id} department={department} onclick={() => handlerClickDepartment(department)} />
         ))}
       </ul>
     </div>

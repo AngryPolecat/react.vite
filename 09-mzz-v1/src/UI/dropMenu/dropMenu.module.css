@@ -1,11 +1,12 @@
 .model-menu,
 .models-menu,
-.lpu-menu {
+.lpu-menu,
+.ksg-menu {
   position: absolute;
   padding: 0px !important;
   background-color: slategray;
   width: 200px;
-  z-index: 3;
+  z-index: 10;
   -webkit-box-shadow: 0px 5px 10px 2px rgba(34, 60, 80, 0.2);
   -moz-box-shadow: 0px 5px 10px 2px rgba(34, 60, 80, 0.2);
   box-shadow: 0px 5px 10px 2px rgba(34, 60, 80, 0.2);
@@ -26,9 +27,15 @@
   left: -185px;
 }
 
+.ksg-menu {
+  top: 0;
+  left: -190px;
+}
+
 .model-menu div,
 .models-menu div,
-.lpu-menu div {
+.lpu-menu div,
+.ksg-menu div {
   font-size: 12px;
   color: white;
   cursor: pointer;
@@ -37,11 +44,13 @@
 
 .model-menu div:hover,
 .models-menu div:hover,
-.lpu-menu div:hover {
+.lpu-menu div:hover,
+.ksg-menu div:hover {
   color: #add8e6;
 }
 
 .models-menu div,
-.lpu-menu div {
+.lpu-menu div,
+.ksg-menu div {
   padding: 10px;
 }
