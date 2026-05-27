@@ -6,6 +6,7 @@ import listsSlice from './listsSlice'
 import listLpuSlice from './features/listLpuModel/listLpuSlice'
 import listDepartmentSlice from './features/listMpModel/listDepartmentSlice'
 import datasetModelSlice from './features/listMpModel/datasetModelSlice'
+import listQuotientSlice from './features/catalogQuotient/listQuotientSlice'
 
 const rootReducers = {
   currentUser: currentUserSlice,
@@ -15,6 +16,7 @@ const rootReducers = {
   listLpu: listLpuSlice,
   listDepartment: listDepartmentSlice,
   datasetModel: datasetModelSlice,
+  listQuotient: listQuotientSlice,
 }
 
 export const store = configureStore({

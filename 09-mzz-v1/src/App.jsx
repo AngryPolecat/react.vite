@@ -7,6 +7,7 @@ import { NotFoundPage } from './pages/notFound/notFound'
 import { ModelsPage } from './pages/models/models'
 import { ModelPage } from './pages/model/model'
 import { LpuPage } from './pages/lpu/lpu'
+import { QuotientPage } from './pages/quotient/quotient'
 
 const router = createBrowserRouter([
   {
@@ -16,6 +17,7 @@ const router = createBrowserRouter([
       { index: true, element: <HomePage /> },
       { path: 'models', element: <ModelsPage /> },
       { path: 'model/:modelId/lpu', element: <ModelPage /> },
+      { path: 'model/:modelId/quotient/:typepomId', element: <QuotientPage /> },
       { path: 'model/:modelId/lpu/:mcod', element: <LpuPage /> },
       { path: 'login', element: <LoginPage /> },
       { path: '*', element: <NotFoundPage /> },

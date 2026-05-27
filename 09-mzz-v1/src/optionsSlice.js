@@ -1,6 +1,15 @@
 import { createSlice } from '@reduxjs/toolkit'
 
-const initialState = { loader: false, message: { text: '', type: null }, extraPanel: false, filterPanel: false, statusLoadingLists: false, statusGroupKsg: true, statusModalWin: false }
+const initialState = {
+  loader: false,
+  message: { text: '', type: null },
+  extraPanel: false,
+  filterPanel: false,
+  statusLoadingLists: false,
+  statusGroupKsg: true,
+  statusModalWin: false,
+  statusGroupQuotient: true,
+}
 
 const optionsSlice = createSlice({
   name: 'options',
@@ -37,10 +46,23 @@ const optionsSlice = createSlice({
     toggleStatusModalWin(state, action) {
       state.statusModalWin = action.payload
     },
+    toggleStatusGroupQuotient(state, action) {
+      state.statusGroupQuotient = !state.statusGroupQuotient
+    },
   },
 })
 
 export default optionsSlice.reducer
 
-export const { toggleLoader, showMessage, closeMessage, toggleExtraPanel, toggleFilterPanel, toggleStatusLoadingLists, closeFilterPanel, toggleStatusGroupKsg, toggleStatusModalWin } =
-  optionsSlice.actions
+export const {
+  toggleLoader,
+  showMessage,
+  closeMessage,
+  toggleExtraPanel,
+  toggleFilterPanel,
+  toggleStatusLoadingLists,
+  closeFilterPanel,
+  toggleStatusGroupKsg,
+  toggleStatusModalWin,
+  toggleStatusGroupQuotient,
+} = optionsSlice.actions

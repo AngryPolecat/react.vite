@@ -1,0 +1,78 @@
+.container {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: nowrap;
+  justify-content: space-between;
+  padding-right: 10px;
+  width: 100%;
+}
+
+.activeBar {
+  margin-top: 10px;
+  width: 100%;
+}
+
+.description {
+  display: flex;
+  flex: row;
+  flex-wrap: nowrap;
+}
+
+.back {
+  padding-left: 3px;
+}
+
+.back:hover {
+  color: #4682b4;
+  cursor: pointer;
+}
+
+.header {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: nowrap;
+  margin-bottom: 20px;
+  border: 0px solid black;
+  justify-content: space-between;
+  /* justify-content: start; */
+}
+
+.header span {
+  margin-right: 20px;
+  font-size: 20px;
+  color: slategray;
+  font-weight: bold;
+  line-height: 35px;
+}
+
+.filterBar {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: nowrap;
+  justify-content: flex-start;
+  border: 0px solid black;
+  width: 100%;
+}
+
+.toggle {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: nowrap;
+  justify-content: flex-start;
+  margin-bottom: 10px;
+}
+
+.toggleText {
+  line-height: 30px;
+  font-size: 14px;
+  width: 100px;
+}
+
+.filter {
+  width: 100%;
+  padding-right: 20px;
+}
+
+.menu {
+  position: relative;
+}

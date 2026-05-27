@@ -39,7 +39,7 @@ const datasetModelSlice = createSlice({
       }
     },
     removeFromDataset(state, action) {
-      state.dataset = state.dataset.map((ksg) => (ksg.choice ? { ...ksg, choice: false, status: 'remove' } : ksg))
+      state.dataset = state.dataset.map((ksg) => (ksg.choice && ksg.status !== 'new' ? { ...ksg, choice: false, status: 'remove' } : ksg))
     },
     openMenuKsg(state, action) {
       state.dataset = state.dataset.map((ksg) => (ksg.id === action.payload ? { ...ksg, showMenu: !ksg.showMenu } : { ...ksg, showMenu: false }))
@@ -60,7 +60,7 @@ const datasetModelSlice = createSlice({
       state.dataset = state.dataset.map((ksg) => (ksg.kd_gr_ksg === action.payload || !action.payload ? { ...ksg, choice: false, status: 'remove' } : ksg))
     },
     applyUpdateVariant(state, action) {
-      state.dataset = state.dataset.filter((ksg) => ksg.status !== 'remove' && ksg)
+      state.dataset = state.dataset.filter((ksg) => ksg.status !== 'remove' && ksg).map((ksg) => ({ ...ksg, choice: false, status: null }))
     },
   },
 })

@@ -5,8 +5,6 @@ import { choiceKsg, openMenuKsg } from '../../datasetModelSlice'
 // import { DropMenu } from '../../../../UI/dropMenu/dropMenu'
 
 export const Ksg = ({ ksg }) => {
-  console.log(ksg)
-
   const extraPanel = useSelector((state) => state.options.extraPanel)
   const dispatch = useDispatch()
 

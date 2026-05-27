@@ -5,6 +5,7 @@ import { choiceModel, openMenuModel, setCurrentModel } from './listModelsSlice'
 import { DropMenu } from '../../UI/dropMenu/dropMenu'
 import { useNavigate } from 'react-router-dom'
 import { closeFilterPanel } from '../../optionsSlice'
+import { TYPEPOM } from '../../const/const'
 
 export const Model = ({ model, copyModel }) => {
   const dispatch = useDispatch()
@@ -22,6 +23,12 @@ export const Model = ({ model, copyModel }) => {
     dispatch(closeFilterPanel())
     dispatch(setCurrentModel(model))
     navigate(`/model/${model.uuid}/lpu`)
+  }
+
+  const handlerOpenQuotient = (model, typepom) => {
+    dispatch(closeFilterPanel())
+    dispatch(setCurrentModel(model))
+    navigate(`/model/${model.uuid}/quotient/${typepom}`)
   }
 
   return (
@@ -62,6 +69,8 @@ export const Model = ({ model, copyModel }) => {
             {!model.released && model.editable ? <div>Закрыть на редактирование</div> : null}
             {!model.released && !model.editable ? <div>Опубликовать</div> : null}
             {model.released ? <div>Снять с публикации</div> : null}
+            <div onClick={() => handlerOpenQuotient(model, TYPEPOM.ST)}>Справочник. Коэффициенты КС</div>
+            <div onClick={() => handlerOpenQuotient(model, TYPEPOM.SZT)}>Справочник. Коэффициенты ДС</div>
             {!model.released && !model.editable ? <div>Удалить</div> : null}
           </DropMenu>
         )}

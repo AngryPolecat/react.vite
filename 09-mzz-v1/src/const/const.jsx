@@ -10,6 +10,7 @@ const URL_GET_LIST_LPU = 'http://srv01.kemoms.ru/php/getListLpu.php'
 const URL_GET_LIST_DEP = 'http://srv01.kemoms.ru/php/getListDepartment.php'
 const URL_GET_DATA_MODEL = 'http://srv01.kemoms.ru/php/getDatasetModel.php'
 const URL_GET_VARIANT = 'http://srv01.kemoms.ru/php/getVariant.php'
+const URL_GET_QUOTIENT = 'http://srv01.kemoms.ru/php/getQuotient.php'
 
 const ST = '7ae3e7a6-b1a2-4e69-95ab-50c25459c64e'
 const AMB = 'afe58793-5e76-4cd6-afff-8d70fd312bb4'
@@ -47,6 +48,7 @@ export const URL = {
   URL_GET_LIST_DEP,
   URL_GET_DATA_MODEL,
   URL_GET_VARIANT,
+  URL_GET_QUOTIENT,
 }
 
 export const TYPEPOM = {

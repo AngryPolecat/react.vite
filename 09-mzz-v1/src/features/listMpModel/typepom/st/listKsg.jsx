@@ -4,6 +4,8 @@ import { Ksg } from './ksg'
 
 export const ListKsg = () => {
   const dataset = useSelector((state) => state.datasetModel.dataset)
+    .slice()
+    .sort((a, b) => a.kd_gr_ksg - b.kd_gr_ksg || a.fed.localeCompare(b.fed))
   const currentGroup = useSelector((state) => state.datasetModel.currentGroup)
 
   return (

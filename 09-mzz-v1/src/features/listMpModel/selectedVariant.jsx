@@ -26,7 +26,7 @@ export const SelectedVariant = () => {
   const dataset = useSelector((state) => state.datasetModel.dataset)
   const comparedKsg = dataset.filter((ksg) => (ksg.choice ? ksg : null))
   const markedForDeletion = dataset.filter((ksg) => (ksg.status === 'remove' ? ksg : null))
-  const markedForSaving = dataset.filter((ksg) => (ksg.status === 'remove' || ksg.status === 'update' ? ksg : null))
+  const markedForSaving = dataset.filter((ksg) => (ksg.status === 'remove' || ksg.status === 'update' || ksg.status === 'new' ? ksg : null))
   const navigate = useNavigate()
   const dispatch = useDispatch()
 
@@ -81,6 +81,7 @@ export const SelectedVariant = () => {
     dispatch(setFilterDataset(''))
     dispatch(toggleStatusGroupKsg())
     dispatch(cancelKsg())
+    setShowMenu(false)
   }
 
   const handlerCleanVariant = () => {
