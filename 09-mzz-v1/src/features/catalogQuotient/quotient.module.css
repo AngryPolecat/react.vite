@@ -4,13 +4,16 @@
   flex-wrap: nowrap;
   justify-content: space-between;
   width: 100%;
+  font-weight: normal !important;
 }
 
+.saveQuotient,
 .choiceQuotient,
 .fed,
 .koz,
 .upr,
-.dzp {
+.dzp,
+.info {
   display: flex;
   align-items: center;
   justify-content: center;
@@ -30,6 +33,14 @@
 .choiceQuotient {
   width: 40px;
   border: 0px solid black;
+}
+
+.saveQuotient {
+  width: 40px;
+}
+
+.info {
+  width: 40px;
 }
 
 .fed {

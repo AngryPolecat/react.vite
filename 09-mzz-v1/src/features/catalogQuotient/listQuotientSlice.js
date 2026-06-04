@@ -27,17 +27,54 @@ const listQuotientSlice = createSlice({
   initialState,
   reducers: {
     setListQuotient(state, action) {
-      state.quotient = action.payload.quotient.map((quotient) => ({ ...quotient, status: null, choice: false }))
+      state.quotient = action.payload.quotient.map((quotient) => ({ ...quotient, status: null, choice: false, currentKoz: quotient.koz, currentUpr: quotient.upr, currentDzp: quotient.dzp }))
       state.groupQuotient = action.payload.group
     },
     setCurrentGroupQuotient(state, action) {
       state.currentGroupQuotient = action.payload
     },
+    resetChoiceQuotient(state, action) {
+      state.quotient = state.quotient.map((quotient) =>
+        quotient.choice
+          ? {
+              ...quotient,
+              status: Number(quotient.koz) === 0 && Number(quotient.upr) === 0 && Number(quotient.dzp) === 0 ? null : 'update',
+              currentKoz: Number(0),
+              currentUpr: Number(0),
+              currentDzp: Number(0),
+            }
+          : quotient,
+      )
+    },
     resetAllQuotient(state, action) {
-      state.quotient = state.quotient
+      state.quotient = state.quotient.map((quotient) => {
+        const resetQuotient = {
+          ...quotient,
+          status: Number(quotient.koz) === 0 && Number(quotient.upr) === 0 && Number(quotient.dzp) === 0 ? null : 'update',
+          currentKoz: Number(0),
+          currentUpr: Number(0),
+          currentDzp: Number(0),
+        }
+        if (state.filterQuotient) {
+          return quotient.fed.toLowerCase().includes(state.filterQuotient.toLowerCase()) || quotient.name.toLowerCase().includes(state.filterQuotient.toLowerCase()) ? resetQuotient : quotient
+        } else {
+          if (state.currentGroupQuotient) {
+            return Number(quotient.grp) === Number(state.currentGroupQuotient) ? resetQuotient : quotient
+          } else {
+            return resetQuotient
+          }
+        }
+      })
     },
     applyUpdateQuotient(state, action) {
-      state.quotient = state.quotient
+      state.quotient = state.quotient.map((quotient) => ({
+        ...quotient,
+        koz: Number(quotient.currentKoz),
+        upr: Number(quotient.currentUpr),
+        dzp: Number(quotient.currentDzp),
+        status: null,
+        choice: false,
+      }))
     },
     choiceQuotient(state, action) {
       state.quotient = state.quotient.map((quotient) => (quotient.ksg === action.payload ? { ...quotient, choice: !quotient.choice } : quotient))
@@ -45,9 +82,23 @@ const listQuotientSlice = createSlice({
     setFilterQuotient(state, action) {
       state.filterQuotient = action.payload
     },
+    setCurrentQuotient(state, action) {
+      state.quotient = state.quotient.map((quotient) =>
+        quotient.ksg === action.payload.ksg
+          ? {
+              ...quotient,
+              status:
+                Number(quotient.koz) === Number(action.payload.koz) && Number(quotient.upr) === Number(action.payload.upr) && Number(quotient.dzp) === Number(action.payload.dzp) ? null : 'update',
+              currentKoz: Number(action.payload.koz),
+              currentUpr: Number(action.payload.upr),
+              currentDzp: Number(action.payload.dzp),
+            }
+          : quotient,
+      )
+    },
   },
 })
 
 export default listQuotientSlice.reducer
 
-export const { setListQuotient, setCurrentGroupQuotient, choiceQuotient, setFilterQuotient } = listQuotientSlice.actions
+export const { setListQuotient, setCurrentGroupQuotient, choiceQuotient, setFilterQuotient, setCurrentQuotient, resetAllQuotient, applyUpdateQuotient, resetChoiceQuotient } = listQuotientSlice.actions

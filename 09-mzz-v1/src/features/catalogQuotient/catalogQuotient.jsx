@@ -7,7 +7,7 @@ import { FilterPanel } from '../../components/filterPanel/filterPanel'
 import { closeFilterPanel, closeMessage, showMessage, toggleStatusGroupQuotient } from '../../optionsSlice'
 import { SETTINGS, TYPEPOM, URL, WARNING_MESSAGE } from '../../const/const'
 import { loaderData } from '../../utils/loaderData'
-import { setCurrentGroupQuotient, setFilterQuotient, setListQuotient } from './listQuotientSlice'
+import { applyUpdateQuotient, resetAllQuotient, resetChoiceQuotient, setCurrentGroupQuotient, setFilterQuotient, setListQuotient } from './listQuotientSlice'
 import { Icon } from '../../UI/icons/icon'
 import { InputUI } from '../../UI/input/input'
 import { ListQuotient } from './listQuotient'
@@ -22,30 +22,11 @@ export const CatalogQuotient = () => {
   const currentModel = useSelector((state) => state.listModels.currentModel.uuid)
   const statusGroupQuotient = useSelector((state) => state.options.statusGroupQuotient)
   const currentGroupQuotient = useSelector((state) => state.listQuotient.currentGroupQuotient)
+  const availableUpdating = useSelector((state) => state.listQuotient.quotient).filter((quotient) => (quotient.status === 'update' ? quotient : null))
+  const availableChoice = useSelector((state) => state.listQuotient.quotient).filter((quotient) => (quotient.choice ? quotient : null))
   const dispatch = useDispatch()
   const navigate = useNavigate()
   const param = useParams()
-
-  const updateListQuotient = (textKsg) => {
-    // console.log(currentFilterQuotient)
-    // console.log(textKsg)
-    // setTextKsg(currentFilterDataset)
-    const data = { model: currentModel, typepom: param.typepomId }
-    // loaderData(URL.URL_GET_QUOTIENT, data)
-    //   .then((result) => {
-    //     console.log(result)
-    //     if (result.error) {
-    //       dispatch(showMessage(WARNING_MESSAGE(result.msg)))
-    //       return
-    //     }
-    //     // dispatch(setDatasetModel({ dataset: result.dataset, dataset2: result.dataset2 }))
-    //   })
-    //   .catch((error) => dispatch(showMessage(WARNING_MESSAGE(error.message))))
-    //   .finally(() => {
-    //     setTimeout(() => dispatch(closeMessage()), SETTINGS.MESSAGE_OPENING_LIMIT)
-    //     //dispatch(toggleLoader(false))
-    //   })
-  }
 
   useEffect(() => {
     !status && navigate('/')
@@ -102,9 +83,24 @@ export const CatalogQuotient = () => {
     setShowMenuQuotient((prev) => !prev)
   }
 
-  const handlerResetAllQuotient = () => {}
+  const handlerResetAllQuotient = () => {
+    setShowMenuQuotient(false)
+    dispatch(resetAllQuotient())
+  }
 
-  const handlerSaveUpdateQuotient = () => {}
+  const updateQuotientDb = () => {}
+
+  const handlerSaveUpdateQuotient = () => {
+    setShowMenuQuotient(false)
+    dispatch(applyUpdateQuotient())
+    // update внешнего хранилища
+    updateQuotientDb()
+  }
+
+  const handlerResetChoiceQuotient = () => {
+    setShowMenuQuotient(false)
+    dispatch(resetChoiceQuotient())
+  }
 
   return (
     <div className={styles.container}>
@@ -142,8 +138,9 @@ export const CatalogQuotient = () => {
                 {showMenuQuotient && (
                   <DropMenu type="models-menu">
                     {currentGroupQuotient && <div onClick={handlerClickReturnGroupQuotient}>Вернуться к группам</div>}
+                    {availableChoice.length > 0 && <div onClick={handlerResetChoiceQuotient}>Обнулить выбранные</div>}
                     <div onClick={handlerResetAllQuotient}>Обнулить весь список</div>
-                    <div onClick={handlerSaveUpdateQuotient}>Применить изменения</div>
+                    {availableUpdating.length > 0 && <div onClick={handlerSaveUpdateQuotient}>Сохранить все изменения</div>}
                   </DropMenu>
                 )}
               </div>

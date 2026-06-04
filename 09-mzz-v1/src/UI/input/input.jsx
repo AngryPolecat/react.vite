@@ -1,3 +1,4 @@
+import { memo } from 'react'
 import styles from './input.module.css'
 
 export const InputUI = ({ placeholder, type, value, onchange, onclick = null, variant = 'input', disabled = false }) => {
