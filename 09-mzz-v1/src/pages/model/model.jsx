@@ -2,11 +2,11 @@ import { useNavigate, useParams } from 'react-router-dom'
 import { useEffect } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import styles from './model.module.css'
-import { ListLpuModel } from '../../features/listLpuModel/listLpuModel'
+import { ListLpuModel } from '../../features/catalogLpuModel/listLpuModel'
 import { loaderData } from '../../utils/loaderData'
 import { URL, WARNING_MESSAGE } from '../../const/const'
 import { showMessage } from '../../optionsSlice'
-import { setListModels } from '../../features/listModels/listModelsSlice'
+import { setListModels } from '../../features/catalogModels/listModelsSlice'
 
 export const ModelPage = () => {
   const navigate = useNavigate()

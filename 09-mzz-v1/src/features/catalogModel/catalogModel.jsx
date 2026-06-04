@@ -1,16 +1,16 @@
 import { useDispatch, useSelector } from 'react-redux'
 import { useNavigate } from 'react-router-dom'
 import { FilterPanel } from '../../components/filterPanel/filterPanel'
-import { FilterListMpModel } from './filterListMpModel'
-import styles from './listMpModel.module.css'
-import { ListMp } from './listMp'
+import { FilterCatalogModel } from './filterCatalogModel'
+import styles from './catalogModel.module.css'
+import { ListTypepom } from './listTypepom'
 import { ListDepartment } from './listDepartment'
 import { closeFilterPanel, toggleExtraPanel } from '../../optionsSlice'
-import { SelectedVariant } from './selectedVariant'
+import { DatasetModel } from './datasetModel'
 import { RightPanel } from '../../components/rightPanel/rightPanel'
-import { PossibleVariant } from './possibleVariant'
+import { Variants } from './variants'
 
-export const ListMpModel = () => {
+export const CatalogModel = () => {
   const filterPanel = useSelector((state) => state.options.filterPanel)
   const nameLpu = useSelector((state) => state.listLpu.currentLpu.name)
   const extraPanel = useSelector((state) => state.options.extraPanel)
@@ -26,7 +26,7 @@ export const ListMpModel = () => {
   return (
     <div className={styles.container}>
       <div>
-        <FilterPanel>{filterPanel && <FilterListMpModel />}</FilterPanel>
+        <FilterPanel>{filterPanel && <FilterCatalogModel />}</FilterPanel>
       </div>
       <div className={styles.content}>
         <div className={styles.header}>
@@ -40,15 +40,15 @@ export const ListMpModel = () => {
         </div>
         <div className={styles.work}>
           <div className={styles.listTypepom}>
-            <ListMp />
+            <ListTypepom />
           </div>
           <div className={styles.listDepartment}>
             <ListDepartment />
           </div>
           <div className={styles.selectedVariant}>
-            <SelectedVariant />
+            <DatasetModel />
           </div>
-          <div className={styles.extraPanel}>{extraPanel && <RightPanel header="Добавить вариант">{<PossibleVariant />}</RightPanel>}</div>
+          <div className={styles.extraPanel}>{extraPanel && <RightPanel header="Добавить вариант">{<Variants />}</RightPanel>}</div>
         </div>
       </div>
     </div>

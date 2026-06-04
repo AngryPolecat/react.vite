@@ -1,16 +1,16 @@
 import { useDispatch, useSelector } from 'react-redux'
-import styles from './listMp.module.css'
+import styles from './listTypepom.module.css'
 import { changeCurrentTypepom } from '../../listsSlice'
 import { Typepom } from './typepom'
 import { toggleExtraPanel } from '../../optionsSlice'
-import { setFilterDataset } from './datasetModelSlice'
+// import { setFilterDataset } from './datasetModelSlice'
 
-export const ListMp = () => {
+export const ListTypepom = () => {
   const listMp = useSelector((state) => state.lists.typepom)
   const dispatch = useDispatch()
 
   const handlerClickTypepom = (typepomCode) => {
-    dispatch(setFilterDataset(''))
+    // dispatch(setFilterDataset(''))
     dispatch(changeCurrentTypepom(typepomCode))
     dispatch(toggleExtraPanel(false))
   }

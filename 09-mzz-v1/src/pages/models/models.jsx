@@ -1,5 +1,5 @@
 import { useSelector } from 'react-redux'
-import { ListModels } from '../../features/listModels/listModels'
+import { ListModels } from '../../features/catalogModels/listModels'
 import styles from './models.module.css'
 import { useNavigate } from 'react-router-dom'
 import { useEffect } from 'react'

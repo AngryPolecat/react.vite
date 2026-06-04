@@ -1,9 +1,9 @@
 import { useDispatch, useSelector } from 'react-redux'
 import { DropList } from '../../UI/droplists/droplists'
-import styles from './filterListMpModel.module.css'
-import { setCurrentLpu } from '../listLpuModel/listLpuSlice'
+import styles from './filterCatalogModel.module.css'
+import { setCurrentLpu } from '../catalogLpuModel/listLpuSlice'
 
-export const FilterListMpModel = () => {
+export const FilterCatalogModel = () => {
   const listLpu = useSelector((state) => state.listLpu.lpu)
   const currentLpu = useSelector((state) => state.listLpu.currentLpu)
   const formatedListLpu = listLpu.map((lpu) => ({ code: lpu.id, description: lpu.name }))

@@ -1,7 +1,7 @@
 import { useDispatch, useSelector } from 'react-redux'
 import styles from './listGroup.module.css'
 import { Group } from './group'
-import { setCurrentGroup } from '../../datasetModelSlice'
+import { setCurrentGroup } from '../../_datasetModelSlice'
 import { toggleExtraPanel } from '../../../../optionsSlice'
 
 export const ListGroup = () => {

@@ -1,7 +1,7 @@
 import { useDispatch, useSelector } from 'react-redux'
 import { Icon } from '../../../../UI/icons/icon'
 import styles from './ksg.module.css'
-import { choiceKsg, openMenuKsg } from '../../datasetModelSlice'
+import { choiceKsg, openMenuKsg } from '../../_datasetModelSlice'
 // import { DropMenu } from '../../../../UI/dropMenu/dropMenu'
 
 export const Ksg = ({ ksg }) => {

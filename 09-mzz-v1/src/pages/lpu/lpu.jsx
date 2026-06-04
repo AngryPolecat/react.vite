@@ -2,7 +2,7 @@ import { useSelector } from 'react-redux'
 import { useEffect } from 'react'
 import styles from './lpu.module.css'
 import { useNavigate } from 'react-router-dom'
-import { ListMpModel } from '../../features/listMpModel/listMpModel'
+import { CatalogModel } from '../../features/catalogModel/catalogModel'
 
 export const LpuPage = () => {
   const status = useSelector((state) => state.options.statusLoadingLists)
@@ -26,7 +26,7 @@ export const LpuPage = () => {
 
   return (
     <div className={styles.container}>
-      <ListMpModel />
+      <CatalogModel />
     </div>
   )
 }

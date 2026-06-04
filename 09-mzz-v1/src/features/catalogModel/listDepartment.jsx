@@ -6,7 +6,7 @@ import { URL } from '../../const/const'
 import { loaderData } from '../../utils/loaderData'
 import { Department } from './department'
 import { setCurrentDepartment, setListDepartment } from './listDepartmentSlice'
-import { setFilterDataset } from './datasetModelSlice'
+// import { setFilterDataset } from './datasetModelSlice'
 
 export const ListDepartment = () => {
   const departments = useSelector((state) => state.listDepartment.departments)

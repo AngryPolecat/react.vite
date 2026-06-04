@@ -1,22 +1,23 @@
 import { configureStore } from '@reduxjs/toolkit'
 import currentUserSlice from './features/login/currentUserSlice'
-import listModelsSlice from './features/listModels/listModelsSlice'
 import optionsSlice from './optionsSlice'
 import listsSlice from './listsSlice'
-import listLpuSlice from './features/listLpuModel/listLpuSlice'
-import listDepartmentSlice from './features/listMpModel/listDepartmentSlice'
-import datasetModelSlice from './features/listMpModel/datasetModelSlice'
+import listModelsSlice from './features/catalogModels/listModelsSlice'
+import listLpuSlice from './features/catalogLpuModel/listLpuSlice'
+import listDepartmentSlice from './features/catalogModel/listDepartmentSlice'
 import listQuotientSlice from './features/catalogQuotient/listQuotientSlice'
+// import datasetModelSlice from './features/listMpModel/_datasetModelSlice'
+import datasetHospSlice from './features/catalogModel/typepom/hosp/datasetHospSlice'
 
 const rootReducers = {
   currentUser: currentUserSlice,
-  listModels: listModelsSlice,
   options: optionsSlice,
   lists: listsSlice,
+  listModels: listModelsSlice,
   listLpu: listLpuSlice,
   listDepartment: listDepartmentSlice,
-  datasetModel: datasetModelSlice,
   listQuotient: listQuotientSlice,
+  datasetHosp: datasetHospSlice,
 }
 
 export const store = configureStore({
