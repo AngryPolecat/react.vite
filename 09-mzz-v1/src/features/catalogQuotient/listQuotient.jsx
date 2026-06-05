@@ -10,8 +10,6 @@ export const ListQuotient = () => {
     .sort((a, b) => a.grp - b.grp || a.fed.localeCompare(b.fed))
   const currentGroupQuotient = useSelector((state) => state.listQuotient.currentGroupQuotient)
 
-  console.log(listQuotient)
-
   return (
     <div className={styles.container}>
       <ul>

@@ -1,10 +1,11 @@
 import styles from './group.module.css'
 
-export const Group = ({ grp, onclick }) => {
+export const Group = ({ group, onclick }) => {
+  //${group.status === 'new' ? styles.newGrp : ''}
   return (
-    <div className={`${styles.container} ${grp.status === 'new' ? styles.newGrp : ''}`} onClick={onclick}>
-      <div className={styles.number}>{grp.kd_gr_ksg}</div>
-      <div className={styles.description}>{grp.name}</div>
+    <div className={`${styles.container} `} onClick={onclick}>
+      <div className={styles.number}>{group.grp}</div>
+      <div className={styles.description}>{group.description}</div>
     </div>
   )
 }

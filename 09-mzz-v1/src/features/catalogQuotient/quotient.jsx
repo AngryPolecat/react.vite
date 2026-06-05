@@ -15,16 +15,22 @@ export const Quotient = memo(({ quotient }) => {
   const preSaveDzp = quotient.dzp
   const dispatch = useDispatch()
 
-  useEffect(() => {
+  useLayoutEffect(() => {
     setKoz(Number(quotient.currentKoz))
     setUpr(Number(quotient.currentUpr))
     setDzp(Number(quotient.currentDzp))
+  }, [Number(quotient.currentKoz), Number(quotient.currentUpr), Number(quotient.currentDzp)])
+
+  useEffect(() => {
+    // setKoz(Number(quotient.currentKoz))
+    // setUpr(Number(quotient.currentUpr))
+    // setDzp(Number(quotient.currentDzp))
     if (updateQuotientInStore) {
       // console.log({ ksg: quotient.ksg, currentKoz: koz.current, currentUpr: upr.current, currentDzp: dzp.current })
       dispatch(setCurrentQuotient({ ksg: quotient.ksg, koz, upr, dzp }))
       setUpdateQuotientInStore(false)
     }
-  }, [updateQuotientInStore, Number(quotient.currentKoz), Number(quotient.currentUpr), Number(quotient.currentDzp)])
+  }, [updateQuotientInStore])
 
   const handlerChoiceQuotient = (ksg) => {
     dispatch(choiceQuotient(ksg))
@@ -69,7 +75,6 @@ export const Quotient = memo(({ quotient }) => {
         )}
       </div>
       <div className={styles.koz}>
-        {/* keyItem={quotient.ksg} */}
         <InputUI variant="input-quotient" onchange={(e) => handlerChangeQuotient(e, setKoz, preSaveKoz)} value={koz} placeholder="Коэффициент затратоемкости" />
       </div>
       <div className={styles.upr}>

@@ -3,17 +3,19 @@ import styles from './listKsg.module.css'
 import { Ksg } from './ksg'
 
 export const ListKsg = () => {
-  const dataset = useSelector((state) => state.datasetModel.dataset)
+  const filterDataset = useSelector((state) => state.datasetHosp.filterDataset)
+  const dataset = useSelector((state) => state.datasetHosp.dataset)
     .slice()
-    .sort((a, b) => a.kd_gr_ksg - b.kd_gr_ksg || a.fed.localeCompare(b.fed))
-  const currentGroup = useSelector((state) => state.datasetModel.currentGroup)
+    .filter((item) => item.fed.toLowerCase().includes(filterDataset.toLowerCase()) || item.name.toLowerCase().includes(filterDataset.toLowerCase()))
+    .sort((a, b) => a.grp - b.grp || a.fed.localeCompare(b.fed))
+  const currentGroup = useSelector((state) => state.datasetHosp.currentGroup)
 
   return (
     <div className={styles.container}>
       <ul>
         {dataset.map(
           (ksg) =>
-            (!currentGroup || currentGroup === ksg.kd_gr_ksg) && (
+            (!currentGroup || currentGroup === ksg.grp) && (
               <li key={ksg.id} className={styles.data}>
                 <Ksg ksg={ksg} />
               </li>
