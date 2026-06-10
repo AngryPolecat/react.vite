@@ -3,8 +3,8 @@ import { useEffect, useState } from 'react'
 import styles from './catalogHosp.module.css'
 import { Icon } from '../../../../UI/icons/icon'
 import { InputUI } from '../../../../UI/input/input'
-import { closeFilterPanel, closeMessage, showMessage, toggleStatusGroupKsg } from '../../../../optionsSlice'
-import { applyUpdateDataset, setCurrentGroup, setDatasetHosp, setFilterDataset } from './datasetHospSlice'
+import { closeFilterPanel, closeMessage, showMessage, toggleExtraPanel, toggleStatusGroupKsg } from '../../../../optionsSlice'
+import { applyUpdateDataset, markingForDeletion, setCurrentGroup, setDatasetHosp, setFilterDataset } from './datasetHospSlice'
 import { ListKsg } from './listKsg'
 import { ListGroup } from './listGroup'
 import { useNavigate } from 'react-router-dom'
@@ -22,8 +22,8 @@ export const CatalogHosp = () => {
   const currentTypepom = useSelector((state) => state.lists.currentTypepom)
   const currentGroup = useSelector((state) => state.datasetHosp.currentGroup)
   const statusGroupKsg = useSelector((state) => state.options.statusGroupKsg)
-  const availableUpdating = useSelector((state) => state.datasetHosp.dataset).filter((ksg) => (ksg.status === 'update' ? ksg : null))
-  const availableChoice = useSelector((state) => state.datasetHosp.dataset).filter((ksg) => (ksg.choice ? ksg : null))
+  const availableUpdating = useSelector((state) => state.datasetHosp.dataset).filter((ksg) => ksg.status === 'update' || ksg.status === 'new' || (ksg.status === 'remove' && ksg))
+  const availableChoice = useSelector((state) => state.datasetHosp.dataset).filter((ksg) => ksg.choice && ksg)
   const dispatch = useDispatch()
   const navigate = useNavigate()
 
@@ -37,7 +37,7 @@ export const CatalogHosp = () => {
           dispatch(showMessage(WARNING_MESSAGE(result.msg)))
           return
         }
-        dispatch(setDatasetHosp({ dataset: result.dataset, groups: result.dataset2 }))
+        dispatch(setDatasetHosp({ dataset: result.dataset, groups: result.dataset2, variants: result.dataset3 }))
       })
       .catch((error) => dispatch(showMessage(WARNING_MESSAGE(error.message))))
       .finally(() => {
@@ -70,6 +70,11 @@ export const CatalogHosp = () => {
     }
   }
 
+  const handlerMarkingForDeletion = () => {
+    setShowMenu(false)
+    dispatch(markingForDeletion())
+  }
+
   const handlerStatusMenu = () => {
     setShowMenu((prev) => !prev)
   }
@@ -85,6 +90,7 @@ export const CatalogHosp = () => {
 
   const handlerAddKsg = () => {
     setShowMenu(false)
+    dispatch(toggleExtraPanel(true))
   }
 
   return (
@@ -114,13 +120,11 @@ export const CatalogHosp = () => {
               {currentGroup && <div onClick={handlerClickReturnGroup}>Вернуться к группам</div>}
               <div onClick={() => handlerAddKsg()}>Добавить</div>
               {availableUpdating.length > 0 ? <div onClick={() => handlerSaveUpdate()}>Сохранить все изменения</div> : null}
-              {/* {availableChoice.length > 0 ? <div onClick={() => handlerMarkRemove()}>Пометить на удаление</div> : null} */}
+              {availableChoice.length > 0 ? <div onClick={() => handlerMarkingForDeletion()}>Пометить на удаление</div> : null}
               {/* 
-              <div onClick={() => handlerAddVariant()}>Добавить</div>
               {comparedKsg.length ? <div onClick={() => handlerCancelVariant()}>Отменить выделение</div> : null}
               {markedForDeletion.length ? <div onClick={() => handlerCancelRemoveVariant()}>Снять пометку на удаление</div> : null}
               {comparedKsg.length ? <div>Перенести выбранные</div> : null}
-              {comparedKsg.length ? <div onClick={() => handlerRemoveVariant()}>Пометить на удаление</div> : null}
               <div onClick={() => handlerCleanAll()}>Очистить весь список</div> */}
             </DropMenu>
           )}
