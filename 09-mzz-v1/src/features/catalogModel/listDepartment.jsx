@@ -19,18 +19,20 @@ export const ListDepartment = () => {
   useEffect(() => {
     !status && navigate('/')
     const data = { id: currentLpuId, model: currentModel }
-    loaderData(URL.URL_GET_LIST_DEP, data)
-      .then((result) => {
-        //console.log(result)
-        if (result.error) {
-          return
-        }
-        dispatch(setListDepartment(result.dataset))
-      })
-      .catch((error) => dispatch(showMessage(WARNING_MESSAGE(error.message))))
-      .finally(() => {
-        //dispatch(toggleLoader(false))
-      })
+    if (currentLpuId && currentModel) {
+      loaderData(URL.URL_GET_LIST_DEP, data)
+        .then((result) => {
+          console.log(result)
+          if (result.error) {
+            return
+          }
+          dispatch(setListDepartment(result.dataset))
+        })
+        .catch((error) => dispatch(showMessage(WARNING_MESSAGE(error.message))))
+        .finally(() => {
+          //dispatch(toggleLoader(false))
+        })
+    }
   }, [currentLpuId])
 
   const handlerClickDepartment = (department) => {

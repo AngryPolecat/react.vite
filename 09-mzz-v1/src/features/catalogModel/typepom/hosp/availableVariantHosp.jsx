@@ -51,6 +51,14 @@ export const AvailableVariantHosp = () => {
       showMenu: false,
       currentAdult: 0,
       currentChild: 0,
+      koz: variant.koz,
+      upr: variant.upr,
+      dzp: variant.dzp,
+      klvl: currentDepartment.klvl || currentLpu.klvl,
+      bs: currentDepartment.bs || currentLpu.bs,
+      kd: currentDepartment.kd || currentLpu.kd,
+      formula: variant.formula,
+      usedLvl: variant.usedLvl,
     }
     dispatch(addKsgToDataset(newKsg))
   }

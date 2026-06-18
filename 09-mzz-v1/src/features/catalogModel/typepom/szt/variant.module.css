@@ -1,0 +1,23 @@
+.container {
+}
+
+.variant {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: nowrap;
+  cursor: pointer;
+}
+
+.variant div {
+  padding: 5px;
+}
+
+.variantFed {
+  width: 80px;
+  font-size: 11px;
+}
+
+.variantName {
+  width: calc(100% - 80px);
+  font-size: 11px;
+}

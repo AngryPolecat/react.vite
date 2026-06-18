@@ -22,11 +22,7 @@ export const Quotient = memo(({ quotient }) => {
   }, [Number(quotient.currentKoz), Number(quotient.currentUpr), Number(quotient.currentDzp)])
 
   useEffect(() => {
-    // setKoz(Number(quotient.currentKoz))
-    // setUpr(Number(quotient.currentUpr))
-    // setDzp(Number(quotient.currentDzp))
     if (updateQuotientInStore) {
-      // console.log({ ksg: quotient.ksg, currentKoz: koz.current, currentUpr: upr.current, currentDzp: dzp.current })
       dispatch(setCurrentQuotient({ ksg: quotient.ksg, koz, upr, dzp }))
       setUpdateQuotientInStore(false)
     }
@@ -83,9 +79,9 @@ export const Quotient = memo(({ quotient }) => {
       <div className={styles.dzp}>
         <InputUI variant="input-quotient" onchange={(e) => handlerChangeQuotient(e, setDzp, preSaveDzp)} value={dzp} placeholder="Доля заработной платы" />
       </div>
-      <div className={styles.saveQuotient}>
+      {/* <div className={styles.saveQuotient}>
         {quotient.status === 'update' && <Icon type="fa fa-floppy-o" size="fa-1x" title="Сохранить?" icon="icon-ksg-choice-yes" onclick={() => handlerChoiceQuotient(quotient.ksg)} />}
-      </div>
+      </div> */}
     </div>
   )
 })

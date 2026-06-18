@@ -1,5 +1,7 @@
 import { useDispatch, useSelector } from 'react-redux'
 import { memo, useEffect, useLayoutEffect, useState } from 'react'
+import { evaluate } from 'mathjs'
+import { NumericFormat } from 'react-number-format'
 import { Icon } from '../../../../UI/icons/icon'
 import styles from './ksg.module.css'
 import { choiceKsg, setCurrentCount } from './datasetHospSlice'
@@ -7,6 +9,16 @@ import { InputUI } from '../../../../UI/input/input'
 // import { DropMenu } from '../../../../UI/dropMenu/dropMenu'
 
 export const Ksg = memo(({ ksg }) => {
+  const userData = {
+    koz: Number(ksg.koz),
+    upr: Number(ksg.upr),
+    dzp: Number(ksg.dzp),
+    bs: Number(ksg.bs),
+    lvl: Number(ksg.klvl),
+  }
+  // console.log(ksg.formula, userData)
+
+  const tarif = evaluate(ksg.formula, userData)
   const [countAdult, setCountAdult] = useState(Number(ksg.currentAdult))
   const [countChild, setCountChild] = useState(Number(ksg.currentChild))
   const [updateKsgInStore, setUpdateKsgInStore] = useState(false)
@@ -83,28 +95,38 @@ export const Ksg = memo(({ ksg }) => {
         )}
         {ksg.status === 'new' && <Icon type="fa-exclamation-triangle" size="fa-1x" title="Новый элемент" icon="icon-marked-new" />}
       </div>
-      <div className={styles.lvl}>{ksg.lvl}</div>
+      <div className={styles.quotients}>
+        <Icon
+          type="fa-info-circle"
+          size="fa-1x"
+          title={`Уровень: ${ksg.lvl}\nКоэффициент уровня: ${Number(ksg.klvl)}\nКоэффициент затратоемкости: ${Number(ksg.koz)}\nУправленческий коэффициент: ${Number(ksg.upr)}\nКоэффициент доли заработной платы: ${Number(ksg.dzp)}\nБазовая ставка: ${ksg.bs}\nКоэффициент уровня: ${ksg.usedLvl ? 'Применяется' : 'Не применяется'}\nФормула: ${ksg.formula}\nТариф: ${tarif.toFixed(2)}`}
+          icon="icon-info"
+        />
+      </div>
       <div className={styles.adult}>
-        <InputUI variant="input-quotient" onchange={(e) => handlerChangeCountKsg(e, setCountAdult, preSaveCountAdult)} value={countAdult} placeholder="Взрослые" />
+        <div className={styles.adultInfo}>
+          <InputUI variant="input-count-ksg" onchange={(e) => handlerChangeCountKsg(e, setCountAdult, preSaveCountAdult)} value={countAdult} placeholder="Взрослые" />
+          <span className={styles.adultRub}>
+            <NumericFormat value={countAdult * tarif.toFixed(2)} thousandSeparator={true} decimalScale={2} fixedDecimalScale={true} />
+          </span>
+        </div>
       </div>
       <div className={styles.child}>
-        <InputUI variant="input-quotient" onchange={(e) => handlerChangeCountKsg(e, setCountChild, preSaveCountChild)} value={countChild} placeholder="Дети" />
-      </div>
-      {/* <div className={styles.total}></div> */}
-      <div className={styles.warning}></div>
-      {/* {!extraPanel && (
-        <div className={styles.menuKsg}>
-          <Icon type="fa-ellipsis-h" size="fa-1x" title="Показать меню" icon="icon-ksg-menu" onclick={() => handlerMenuKsg(ksg.id)} />
-          {ksg.showMenu && (
-            <DropMenu type="ksg-menu">
-              <div onClick={() => handlerRemoveKsg(ksg.id)}>Удалить из списка</div>
-              <div onClick={() => handlerMoveKsg(ksg.id)}>Перенести</div>
-              <div>Пункт 3</div>
-              <div>Пункт 4</div>
-            </DropMenu>
-          )}
+        <div className={styles.childInfo}>
+          <InputUI variant="input-count-ksg" onchange={(e) => handlerChangeCountKsg(e, setCountChild, preSaveCountChild)} value={countChild} placeholder="Дети" />
+          <span className={styles.childRub}>
+            <NumericFormat value={countChild * tarif.toFixed(2)} thousandSeparator={true} decimalScale={2} fixedDecimalScale={true} />
+          </span>
         </div>
-      )} */}
+      </div>
+      <div className={styles.total}>
+        <div className={styles.totalInfo}>
+          <InputUI variant="input-count-ksg" value={Number(countAdult) + Number(countChild)} placeholder="Сумма" disabled={true} />
+          <span className={styles.totalRub}>
+            <NumericFormat value={countAdult * tarif.toFixed(2) + countChild * tarif.toFixed(2)} thousandSeparator={true} decimalScale={2} fixedDecimalScale={true} />
+          </span>
+        </div>
+      </div>
     </div>
   )
 })

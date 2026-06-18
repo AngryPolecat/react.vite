@@ -1,5 +1,6 @@
 import { useDispatch, useSelector } from 'react-redux'
 import { useEffect, useState } from 'react'
+import { useNavigate } from 'react-router-dom'
 import styles from './catalogHosp.module.css'
 import { Icon } from '../../../../UI/icons/icon'
 import { InputUI } from '../../../../UI/input/input'
@@ -7,7 +8,6 @@ import { closeFilterPanel, closeMessage, showMessage, toggleExtraPanel, toggleSt
 import { applyUpdateDataset, markingForDeletion, setCurrentGroup, setDatasetHosp, setFilterDataset } from './datasetHospSlice'
 import { ListKsg } from './listKsg'
 import { ListGroup } from './listGroup'
-import { useNavigate } from 'react-router-dom'
 import { SETTINGS, URL, WARNING_MESSAGE } from '../../../../const/const'
 import { loaderData } from '../../../../utils/loaderData'
 import { DropMenu } from '../../../../UI/dropMenu/dropMenu'
@@ -37,7 +37,7 @@ export const CatalogHosp = () => {
           dispatch(showMessage(WARNING_MESSAGE(result.msg)))
           return
         }
-        dispatch(setDatasetHosp({ dataset: result.dataset, groups: result.dataset2, variants: result.dataset3 }))
+        dispatch(setDatasetHosp({ dataset: result.dataset, groups: result.dataset2, variants: result.dataset3, quotients: result.dataset4 }))
       })
       .catch((error) => dispatch(showMessage(WARNING_MESSAGE(error.message))))
       .finally(() => {

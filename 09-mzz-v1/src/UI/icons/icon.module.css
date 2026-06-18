@@ -111,8 +111,14 @@
 
 .icon-marked-remove i {
   color: coral;
+  cursor: pointer;
 }
 
 .icon-marked-new i {
   color: #007f66;
+}
+
+.icon-info i {
+  color: #4682b4;
+  cursor: pointer;
 }

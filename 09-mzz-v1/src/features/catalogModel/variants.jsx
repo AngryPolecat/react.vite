@@ -2,6 +2,7 @@ import { useSelector } from 'react-redux'
 import styles from './variants.module.css'
 import { TYPEPOM } from '../../const/const'
 import { AvailableVariantHosp } from './typepom/hosp/availableVariantHosp'
+import { AvailableVariantSzt } from './typepom/szt/availableVariantSzt'
 
 export const Variants = () => {
   const currentTypepom = useSelector((state) => state.lists.currentTypepom)
@@ -20,6 +21,6 @@ export const Variants = () => {
     case TYPEPOM.SMP:
       return <div className={styles.container}>Скорая помощь</div>
     case TYPEPOM.SZT:
-      return <div className={styles.container}>Дневной стационар</div>
+      return <div className={styles.container}>{<AvailableVariantSzt />}</div>
   }
 }
