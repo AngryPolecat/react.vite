@@ -1,0 +1,95 @@
+.container {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: nowrap;
+  justify-content: space-between;
+  padding-right: 10px;
+  width: 100%;
+}
+
+.content {
+  margin-top: 10px;
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  height: calc(100% - 20px);
+}
+
+.description {
+  display: flex;
+  flex: row;
+  flex-wrap: nowrap;
+}
+
+.back {
+  padding-left: 3px;
+}
+
+.back:hover {
+  color: #4682b4;
+  cursor: pointer;
+}
+
+.header {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: nowrap;
+  margin-bottom: 20px;
+  border: 0px solid black;
+  justify-content: space-between;
+  /* justify-content: start; */
+}
+
+.header span {
+  margin-right: 20px;
+  font-size: 20px;
+  color: slategray;
+  font-weight: bold;
+  line-height: 35px;
+}
+
+.listDepartment {
+  width: 300px;
+  border: 1px solid slategray;
+  margin-right: 10px;
+  -webkit-box-shadow: 0px 5px 10px 2px rgba(34, 60, 80, 0.2);
+  -moz-box-shadow: 0px 5px 10px 2px rgba(34, 60, 80, 0.2);
+  box-shadow: 0px 5px 10px 2px rgba(34, 60, 80, 0.2);
+}
+
+.listTarif {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  border: 1px solid slategray;
+  -webkit-box-shadow: 0px 5px 10px 2px rgba(34, 60, 80, 0.2);
+  -moz-box-shadow: 0px 5px 10px 2px rgba(34, 60, 80, 0.2);
+  box-shadow: 0px 5px 10px 2px rgba(34, 60, 80, 0.2);
+  padding: 10px;
+}
+
+.work {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: nowrap;
+  width: 100%;
+  height: 100%;
+}
+
+.filterBar {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: nowrap;
+  justify-content: flex-start;
+  border: 0px solid black;
+  width: 100%;
+}
+
+.filter {
+  width: 100%;
+  padding-right: 20px;
+}
+
+.menu {
+  position: relative;
+}

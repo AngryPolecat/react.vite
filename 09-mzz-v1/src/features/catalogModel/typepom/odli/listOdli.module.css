@@ -1,0 +1,11 @@
+.container {
+  overflow: auto;
+  height: calc(100vh - 280px);
+  margin-top: 10px;
+  border: 0px solid black;
+  width: 100%;
+}
+
+.data:nth-child(2n + 1) {
+  background-color: #fdf5e6;
+}

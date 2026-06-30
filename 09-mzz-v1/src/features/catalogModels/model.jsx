@@ -6,6 +6,8 @@ import { DropMenu } from '../../UI/dropMenu/dropMenu'
 import { useNavigate } from 'react-router-dom'
 import { closeFilterPanel } from '../../optionsSlice'
 import { TYPEPOM } from '../../const/const'
+import { setCurrentLpu } from '../catalogLpuModel/listLpuSlice'
+import { setCurrentDepartment } from '../catalogModel/listDepartmentSlice'
 
 export const Model = ({ model, copyModel }) => {
   const dispatch = useDispatch()
@@ -29,6 +31,14 @@ export const Model = ({ model, copyModel }) => {
     dispatch(closeFilterPanel())
     dispatch(setCurrentModel(model))
     navigate(`/model/${model.uuid}/quotient/${typepom}`)
+  }
+
+  const handlerOpenTarif = (model, typepom) => {
+    dispatch(closeFilterPanel())
+    dispatch(setCurrentModel(model))
+    dispatch(setCurrentLpu({}))
+    dispatch(setCurrentDepartment({}))
+    navigate(`/model/${model.uuid}/tarif/${typepom}`)
   }
 
   return (
@@ -71,6 +81,7 @@ export const Model = ({ model, copyModel }) => {
             {model.released ? <div>Снять с публикации</div> : null}
             <div onClick={() => handlerOpenQuotient(model, TYPEPOM.ST)}>Справочник. Коэффициенты КС</div>
             <div onClick={() => handlerOpenQuotient(model, TYPEPOM.SZT)}>Справочник. Коэффициенты ДС</div>
+            <div onClick={() => handlerOpenTarif(model, TYPEPOM.ODLI)}>Справочник. Тарифы ОДЛИ</div>
             {!model.released && !model.editable ? <div>Удалить</div> : null}
           </DropMenu>
         )}

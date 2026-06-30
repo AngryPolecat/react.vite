@@ -6,6 +6,8 @@ import styles from './lpu.module.css'
 import { openMenuLpu, setCurrentLpu } from './listLpuSlice'
 import { DropMenu } from '../../UI/dropMenu/dropMenu'
 import { closeFilterPanel } from '../../optionsSlice'
+import { setCurrentDepartment } from '../catalogModel/listDepartmentSlice'
+import { TYPEPOM } from '../../const/const'
 
 export const Lpu = ({ lpu }) => {
   const dispatch = useDispatch()
@@ -23,6 +25,14 @@ export const Lpu = ({ lpu }) => {
     navigate(`/model/${modelId}/lpu/${currentLpu.uuid}`)
   }
 
+  const handlerOpenTarif = (lpu, typepom) => {
+    const currentLpu = { ...lpu, uuid: uuidv4() }
+    dispatch(setCurrentLpu(currentLpu))
+    dispatch(setCurrentDepartment({}))
+    dispatch(closeFilterPanel())
+    navigate(`/model/${modelId}/tarif/${typepom}`)
+  }
+
   return (
     <div className={styles.container}>
       <div className={`${styles.codeLpu} ${styles.fields}`}>{lpu.mcod}</div>
@@ -33,7 +43,7 @@ export const Lpu = ({ lpu }) => {
         {lpu.showMenu && (
           <DropMenu type="lpu-menu">
             <div onClick={() => handlerOpenLpu(lpu)}>Открыть</div>
-            <div>Пункт 2</div>
+            <div onClick={() => handlerOpenTarif(lpu, TYPEPOM.ODLI)}>Справочник. Тарифы ОДЛИ</div>
             <div>Пункт 3</div>
           </DropMenu>
         )}

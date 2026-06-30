@@ -1,0 +1,30 @@
+.container {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+}
+
+.activeBar {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: nowrap;
+  justify-content: space-between;
+}
+
+.filterBar {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: nowrap;
+  justify-content: flex-start;
+  border: 0px solid black;
+  width: 100%;
+}
+
+.filter {
+  width: 100%;
+  padding-right: 20px;
+}
+
+.menu {
+  position: relative;
+}

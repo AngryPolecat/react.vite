@@ -1,0 +1,58 @@
+.container {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: nowrap;
+  justify-content: flex-start;
+  width: 100%;
+  font-weight: normal !important;
+  border: 0px solid black;
+}
+
+.grp,
+.choiceTarif,
+.info,
+.usl,
+.description,
+.tarif {
+  display: flex;
+  flex-direction: column;
+  align-items: stretch;
+  justify-content: center;
+}
+
+.grp,
+.usl,
+.description,
+.choiceTarif,
+.tarif {
+  font-size: 12px;
+  color: slategray;
+  padding: 5px;
+}
+
+.choiceTarif,
+.info {
+  width: 40px;
+  border: 0px solid black;
+}
+
+.grp {
+  width: 25%;
+  text-align: left;
+  border: 0px solid black;
+}
+
+.usl {
+  width: 15%;
+  border: 0px solid black;
+}
+
+.description {
+  width: 50%;
+  border: 0px solid black;
+}
+
+.tarif {
+  width: 7%;
+  border: 0px solid black;
+}

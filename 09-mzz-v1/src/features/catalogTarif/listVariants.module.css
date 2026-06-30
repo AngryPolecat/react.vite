@@ -1,0 +1,18 @@
+.container {
+  width: 100%;
+}
+
+.listVariant {
+  height: calc(100vh - 320px);
+  overflow: auto;
+  padding: 0 5px;
+}
+
+.listVariant li:nth-child(2n + 1) {
+  background-color: #dcdcdc;
+}
+
+.filter {
+  margin-bottom: 10px;
+  padding: 0 10px;
+}

@@ -3,6 +3,7 @@ import styles from './datasetModel.module.css'
 import { SETTINGS, URL, WARNING_MESSAGE, TYPEPOM } from '../../const/const'
 import { CatalogHosp } from './typepom/hosp/catalogHosp'
 import { CatalogSzt } from './typepom/szt/catalogSzt'
+import { CatalogOdli } from './typepom/odli/catalogOdli'
 
 export const DatasetModel = () => {
   const currentTypepom = useSelector((state) => state.lists.currentTypepom)
@@ -14,5 +15,7 @@ export const DatasetModel = () => {
     case TYPEPOM.SZT:
       return <CatalogSzt />
       break
+    case TYPEPOM.ODLI:
+      return <CatalogOdli />
   }
 }

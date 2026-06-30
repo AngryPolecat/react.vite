@@ -1,29 +1,26 @@
 import { useDispatch, useSelector } from 'react-redux'
 import { useEffect, useState } from 'react'
 import { useNavigate } from 'react-router-dom'
-import styles from './catalogHosp.module.css'
-import { Icon } from '../../../../UI/icons/icon'
+import styles from './catalogOdli.module.css'
 import { InputUI } from '../../../../UI/input/input'
-import { closeFilterPanel, closeMessage, showMessage, toggleExtraPanel, toggleStatusGroupKsg } from '../../../../optionsSlice'
-import { applyUpdateDataset, markingForDeletion, setCurrentGroup, setDatasetHosp, setFilterDataset } from './datasetHospSlice'
-import { ListKsg } from './listKsg'
-import { ListGroup } from './listGroup'
+import { closeFilterPanel, closeMessage, showMessage, toggleExtraPanel } from '../../../../optionsSlice'
 import { SETTINGS, URL, WARNING_MESSAGE } from '../../../../const/const'
 import { loaderData } from '../../../../utils/loaderData'
+import { applyUpdateDataset, markingForDeletion, setDatasetOdli, setFilterDataset } from './datasetOdliSlice'
+import { ListOdli } from './listOdli'
 import { DropMenu } from '../../../../UI/dropMenu/dropMenu'
+import { Icon } from '../../../../UI/icons/icon'
 
-export const CatalogHosp = () => {
+export const CatalogOdli = () => {
   const [showMenu, setShowMenu] = useState(false)
-  const [textKsg, setTextKsg] = useState('')
+  const [textOdli, setTextOdli] = useState('')
   const status = useSelector((state) => state.options.statusLoadingLists)
   const currentModel = useSelector((state) => state.listModels.currentModel.uuid)
   const currentLpu = useSelector((state) => state.listLpu.currentLpu.mcod)
   const currentDepartment = useSelector((state) => state.listDepartment.currentDepartment.code)
   const currentTypepom = useSelector((state) => state.lists.currentTypepom)
-  const currentGroup = useSelector((state) => state.datasetHosp.currentGroup)
-  const statusGroupKsg = useSelector((state) => state.options.statusGroupKsg)
-  const availableUpdating = useSelector((state) => state.datasetHosp.dataset).filter((ksg) => (ksg.status === 'update' || ksg.status === 'new' || ksg.status === 'remove') && ksg)
-  const availableChoice = useSelector((state) => state.datasetHosp.dataset).filter((ksg) => ksg.choice && ksg)
+  const availableUpdating = useSelector((state) => state.datasetOdli.dataset).filter((odli) => odli.status === 'update' || odli.status === 'new' || (odli.status === 'remove' && odli))
+  const availableChoice = useSelector((state) => state.datasetOdli.dataset).filter((odli) => odli.choice && odli)
   const dispatch = useDispatch()
   const navigate = useNavigate()
 
@@ -32,12 +29,12 @@ export const CatalogHosp = () => {
     const data = { model: currentModel, lpu: currentLpu, department: currentDepartment, typepom: currentTypepom }
     loaderData(URL.URL_GET_DATA_MODEL, data)
       .then((result) => {
-        // console.log(result)
+        console.log(result)
         if (result.error) {
           dispatch(showMessage(WARNING_MESSAGE(result.msg)))
           return
         }
-        dispatch(setDatasetHosp({ dataset: result.dataset, groups: result.dataset2, variants: result.dataset3, quotients: result.dataset4 }))
+        dispatch(setDatasetOdli({ dataset: result.dataset }))
       })
       .catch((error) => dispatch(showMessage(WARNING_MESSAGE(error.message))))
       .finally(() => {
@@ -46,25 +43,8 @@ export const CatalogHosp = () => {
       })
   }, [currentDepartment, currentTypepom, currentLpu])
 
-  const resetOptions = () => {
-    setTextKsg('')
-    setShowMenu(false)
-    dispatch(setFilterDataset(''))
-    dispatch(setCurrentGroup(null))
-    dispatch(closeFilterPanel())
-  }
-
-  const handlerClickReturnGroup = () => {
-    resetOptions()
-  }
-
-  const handlerChangeStatusGroupKsg = () => {
-    resetOptions()
-    dispatch(toggleStatusGroupKsg())
-  }
-
   const handlerChangeFilter = ({ target }) => {
-    setTextKsg(target.value)
+    setTextOdli(target.value)
     if (target.value.length >= 3 || !target.value.length) {
       dispatch(setFilterDataset(target.value))
     }
@@ -79,17 +59,16 @@ export const CatalogHosp = () => {
     setShowMenu((prev) => !prev)
   }
 
-  const updateDatasetDb = () => {
-    // записываем в базу изменения
-  }
+  const updateDatasetDb = () => {}
 
   const handlerSaveUpdate = () => {
     setShowMenu(false)
+    // update внешнего хранилища
     updateDatasetDb()
     dispatch(applyUpdateDataset())
   }
 
-  const handlerAddKsg = () => {
+  const handlerAddOdli = () => {
     setShowMenu(false)
     dispatch(toggleExtraPanel(true))
   }
@@ -98,40 +77,26 @@ export const CatalogHosp = () => {
     <div className={styles.container}>
       <div className={styles.activeBar}>
         <div className={styles.filterBar}>
-          {!currentGroup && (
-            <div className={styles.toggle}>
-              {statusGroupKsg ? (
-                <Icon type="fa-toggle-on" size="fa-2x" title="Показать по КСГ" icon="icon-toggle-ksg" onclick={handlerChangeStatusGroupKsg} />
-              ) : (
-                <Icon type="fa-toggle-off" size="fa-2x" title="Показать по группам" icon="icon-toggle-ksg" onclick={handlerChangeStatusGroupKsg} />
-              )}
-              <span className={styles.toggleText}>По группам</span>
-            </div>
-          )}
-          {(currentGroup || !statusGroupKsg) && (
-            <div className={styles.filter}>
-              <InputUI variant="input-filter-variant" onchange={(e) => handlerChangeFilter(e)} value={textKsg} placeholder="Часть кода КСГ или названия" />
-            </div>
-          )}
+          <div className={styles.filter}>
+            <InputUI variant="input-filter-variant" onchange={(e) => handlerChangeFilter(e)} value={textOdli} placeholder="Часть кода услуги, обстоятельства или названия" />
+          </div>
         </div>
         <div className={styles.menu}>
           <Icon type="fa-ellipsis-h" size="fa-1x" title="Показать меню" icon="icon-header-models-menu" onclick={handlerStatusMenu} />
           {showMenu && (
             <DropMenu type="models-menu">
-              {currentGroup && <div onClick={handlerClickReturnGroup}>Вернуться к группам</div>}
-              <div onClick={() => handlerAddKsg()}>Добавить</div>
-              {availableUpdating.length > 0 ? <div onClick={() => handlerSaveUpdate()}>Сохранить все изменения</div> : null}
+              <div onClick={() => handlerAddOdli()}>Добавить</div>
               {availableChoice.length > 0 ? <div onClick={() => handlerMarkingForDeletion()}>Пометить на удаление</div> : null}
+              {availableUpdating.length > 0 ? <div onClick={() => handlerSaveUpdate()}>Сохранить все изменения</div> : null}
               {/* 
               {comparedKsg.length ? <div onClick={() => handlerCancelVariant()}>Отменить выделение</div> : null}
               {markedForDeletion.length ? <div onClick={() => handlerCancelRemoveVariant()}>Снять пометку на удаление</div> : null}
-              {comparedKsg.length ? <div>Перенести выбранные</div> : null}
               <div onClick={() => handlerCleanAll()}>Очистить весь список</div> */}
             </DropMenu>
           )}
         </div>
       </div>
-      {currentGroup || !statusGroupKsg ? <ListKsg /> : <ListGroup />}
+      <ListOdli />
     </div>
   )
 }

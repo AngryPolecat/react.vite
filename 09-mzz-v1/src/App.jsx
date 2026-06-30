@@ -8,6 +8,7 @@ import { ModelsPage } from './pages/models/models'
 import { ModelPage } from './pages/model/model'
 import { LpuPage } from './pages/lpu/lpu'
 import { QuotientPage } from './pages/quotient/quotient'
+import { TarifPage } from './pages/tarif/tarif'
 
 const router = createBrowserRouter([
   {
@@ -18,6 +19,7 @@ const router = createBrowserRouter([
       { path: 'models', element: <ModelsPage /> },
       { path: 'model/:modelId/lpu', element: <ModelPage /> },
       { path: 'model/:modelId/quotient/:typepomId', element: <QuotientPage /> },
+      { path: 'model/:modelId/tarif/:typepomId', element: <TarifPage /> },
       { path: 'model/:modelId/lpu/:mcod', element: <LpuPage /> },
       { path: 'login', element: <LoginPage /> },
       { path: '*', element: <NotFoundPage /> },
